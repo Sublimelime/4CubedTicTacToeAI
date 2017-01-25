@@ -12,4 +12,5 @@ package pack1;
 public class Test {
 
     String hello = "noah";
+    int i = 0;
 }
