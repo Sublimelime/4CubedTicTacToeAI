@@ -10,5 +10,5 @@ package pack1;
  * @author othscs253
  */
 public class Test {
-
+    int i = 0;
 }
