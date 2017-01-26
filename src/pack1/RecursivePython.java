@@ -13,6 +13,7 @@ public class RecursivePython implements PlayerInt {
 
     private char letter;
     private String name;
+    private boolean movedRandomly = false;
 
     public RecursivePython(char letter) {
         this.letter = letter;
@@ -39,11 +40,13 @@ public class RecursivePython implements PlayerInt {
     public LocationInt getMove(BoardInt board) {
         int score;
         Location loc = null;
+        int scoreTemp = 0;
+
         for (int sheet = 0; sheet < board.numSheets(); sheet++) {
             for (int row = 0; row < board.numRows(); row++) {
                 for (int col = 0; col < board.numCols(); col++) {
                     LocationScore ls = new LocationScore(board, new Location(sheet, row, col), letter);
-                    int scoreTemp = 0;
+
                     score = (ls.getSelfQuadruples() * 1000) + (ls.getSelfTriples() * 100) + (ls.getSelfDoubles() * 10) + ls.getSelfSingles();
                     if (score > scoreTemp) {
                         scoreTemp = score;
