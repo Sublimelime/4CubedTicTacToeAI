@@ -46,6 +46,7 @@ public class RecursivePython implements PlayerInt {
                     int scoreTemp = 0;
                     score = (ls.getSelfQuadruples() * 1000) + (ls.getSelfTriples() * 100) + (ls.getSelfDoubles() * 10) + ls.getSelfSingles();
                     if (score > scoreTemp) {
+                        scoreTemp = score;
                         loc = new Location(sheet, row, col);
                     }
                 }
