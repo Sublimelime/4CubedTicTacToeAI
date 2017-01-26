@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import javax.swing.JPanel;
+import pack1.RecursivePython;
 
 public class GamePanel extends JPanel implements Runnable, MouseListener {
     // Sleep Timers
@@ -45,8 +46,11 @@ public class GamePanel extends JPanel implements Runnable, MouseListener {
         // Add a player to both Player ArrayLists and then add a new Player to both ArrayLists
         AIs1.add(new Test_AI_1('X'));
         AIs2.add(new Test_AI_1('O'));
-        AIs1.add(new Test_AI_2('X'));
-        AIs2.add(new Test_AI_2('O'));
+
+        //AIs1.add(new Test_AI_2('X'));
+        //AIs2.add(new Test_AI_2('O'));
+        AIs1.add(new RecursivePython('O'));
+        AIs2.add(new RecursivePython('X'));
 
         //AIs1.add(new HumanPlayer('X',"Tully"));
         //AIs2.add(new HumanPlayer('O',"Tully"));
