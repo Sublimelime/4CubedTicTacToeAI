@@ -37,6 +37,15 @@ public class RecursivePython implements PlayerInt {
      */
     @Override
     public LocationInt getMove(BoardInt board) {
+        int score;
+
+        for (int sheet = 0; sheet < board.numSheets(); sheet++) {
+            for (int row = 0; row < board.numRows(); row++) {
+                for (int col = 0; col < board.numCols(); col++) {
+                    
+                }
+            }
+        }
         return null;
     }
 
