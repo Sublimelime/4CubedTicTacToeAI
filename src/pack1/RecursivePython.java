@@ -19,6 +19,11 @@ public class RecursivePython implements PlayerInt {
         this.name = "Recursive Python";
     }
 
+    /**
+     * Returns the letter that the AI is playing.
+     *
+     * @return A char, either X or O.
+     */
     @Override
     public char getLetter() {
         return letter;
@@ -35,6 +40,11 @@ public class RecursivePython implements PlayerInt {
         return null;
     }
 
+    /**
+     * Returns the name of the AI
+     *
+     * @return The name of the AI
+     */
     @Override
     public String getName() {
         return name;
