@@ -2,6 +2,8 @@ package pack1;
 
 import tully.*;
 
+import java.util.Random;
+
 /**
  * An AI coded by Hunter Wright and Noah Morton
  *
@@ -41,6 +43,17 @@ public class RecursivePython implements PlayerInt {
         int score;
         Location loc = null;
         int scoreTemp = 0;
+
+        if(!movedRandomly)
+        {
+            Location l;
+            Random rand = new Random();
+            do {
+                l = new Location(rand.nextInt(4), rand.nextInt(4), rand.nextInt(4));
+            } while (!board.isEmpty(l));
+
+            return l;
+        }
 
         for (int sheet = 0; sheet < board.numSheets(); sheet++) {
             for (int row = 0; row < board.numRows(); row++) {
