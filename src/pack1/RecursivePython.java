@@ -40,7 +40,7 @@ public class RecursivePython implements PlayerInt {
     public LocationInt getMove(BoardInt board) {
         int score;
         Location loc = null;
-        int scoreTemp = 0;
+        int scoreTemp = -1;
 
         if (!movedRandomly) {
             Location l;
@@ -50,25 +50,30 @@ public class RecursivePython implements PlayerInt {
             } while (!board.isEmpty(l));
 
             movedRandomly = true;
-
+            System.out.println("Moved randomly.");
             return l;
         }
 
         for (int sheet = 0; sheet < board.numSheets(); sheet++) {
             for (int row = 0; row < board.numRows(); row++) {
                 for (int col = 0; col < board.numCols(); col++) { //goes through the whole grid
-                    if (board.isEmpty(new Location(sheet, row, col))) {
-                        LocationScore ls = new LocationScore(board, new Location(sheet, row, col), letter); //determines the score for the current place
+                    Location l = new Location(sheet, row, col);
+                    if (board.isEmpty(l)) {
+
+                        LocationScore ls = new LocationScore(board, l, letter); //determines the score for the current place
 
                         score = (ls.getSelfQuadruples() * 1000) + (ls.getSelfTriples() * 100) + (ls.getSelfDoubles() * 10) + ls.getSelfSingles(); //Sets the score
-                        if (score > scoreTemp) { // If this place is better than all so far
+                        System.out.println(l + " Has a score of..." + score);
+                        if (score >= scoreTemp) { // If this place is better than all so far
+
                             scoreTemp = score;
-                            loc = new Location(sheet, row, col);
+                            loc = l;
                         }
                     }
                 }
             }
         }
+        System.out.println("I moved to" + loc);
         return loc;
     }
 
