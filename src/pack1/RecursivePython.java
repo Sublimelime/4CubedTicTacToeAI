@@ -7,8 +7,8 @@ import java.util.Random;
 /**
  * An AI coded by Hunter Wright and Noah Morton
  *
- * @author Noah Morton/Hunter Wright
- *         Date created: Jan 25, 2017 Part of project: TicTacToeAI
+ * @author Noah Morton/Hunter Wright Date created: Jan 25, 2017 Part of project:
+ *         TicTacToeAI
  */
 public class RecursivePython implements PlayerInt {
 
@@ -49,6 +49,8 @@ public class RecursivePython implements PlayerInt {
             do {
                 l = new Location(rand.nextInt(4), rand.nextInt(4), rand.nextInt(4));
             } while (!board.isEmpty(l));
+
+            movedRandomly = true;
 
             return l;
         }
