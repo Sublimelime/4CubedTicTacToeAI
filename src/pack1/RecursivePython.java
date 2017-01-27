@@ -55,11 +55,11 @@ public class RecursivePython implements PlayerInt {
 
         for (int sheet = 0; sheet < board.numSheets(); sheet++) {
             for (int row = 0; row < board.numRows(); row++) {
-                for (int col = 0; col < board.numCols(); col++) {
-                    LocationScore ls = new LocationScore(board, new Location(sheet, row, col), letter);
+                for (int col = 0; col < board.numCols(); col++) { //goes through the whole grid
+                    LocationScore ls = new LocationScore(board, new Location(sheet, row, col), letter); //determines the score for the current place
 
-                    score = (ls.getSelfQuadruples() * 1000) + (ls.getSelfTriples() * 100) + (ls.getSelfDoubles() * 10) + ls.getSelfSingles();
-                    if (score > scoreTemp) {
+                    score = (ls.getSelfQuadruples() * 1000) + (ls.getSelfTriples() * 100) + (ls.getSelfDoubles() * 10) + ls.getSelfSingles(); //Sets the score
+                    if (score > scoreTemp) { // If this place is better than all so far
                         scoreTemp = score;
                         loc = new Location(sheet, row, col);
                     }
