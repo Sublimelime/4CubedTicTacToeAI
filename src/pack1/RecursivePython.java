@@ -1,14 +1,13 @@
 package pack1;
 
-import tully.*;
-
 import java.util.Random;
+import tully.*;
 
 /**
  * An AI coded by Hunter Wright and Noah Morton
  *
  * @author Noah Morton/Hunter Wright Date created: Jan 25, 2017 Part of project:
- *         TicTacToeAI
+ * TicTacToeAI
  */
 public class RecursivePython implements PlayerInt {
 
@@ -58,12 +57,14 @@ public class RecursivePython implements PlayerInt {
         for (int sheet = 0; sheet < board.numSheets(); sheet++) {
             for (int row = 0; row < board.numRows(); row++) {
                 for (int col = 0; col < board.numCols(); col++) { //goes through the whole grid
-                    LocationScore ls = new LocationScore(board, new Location(sheet, row, col), letter); //determines the score for the current place
+                    if (board.isEmpty(new Location(sheet, row, col))) {
+                        LocationScore ls = new LocationScore(board, new Location(sheet, row, col), letter); //determines the score for the current place
 
-                    score = (ls.getSelfQuadruples() * 1000) + (ls.getSelfTriples() * 100) + (ls.getSelfDoubles() * 10) + ls.getSelfSingles(); //Sets the score
-                    if (score > scoreTemp) { // If this place is better than all so far
-                        scoreTemp = score;
-                        loc = new Location(sheet, row, col);
+                        score = (ls.getSelfQuadruples() * 1000) + (ls.getSelfTriples() * 100) + (ls.getSelfDoubles() * 10) + ls.getSelfSingles(); //Sets the score
+                        if (score > scoreTemp) { // If this place is better than all so far
+                            scoreTemp = score;
+                            loc = new Location(sheet, row, col);
+                        }
                     }
                 }
             }
