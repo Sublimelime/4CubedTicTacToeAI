@@ -68,4 +68,13 @@ public class RecursivePython implements PlayerInt {
         return name;
     }
 
+    /**
+     * Returns a copy of the AI for the client testing program.
+     *
+     * @return A new instance of this file.
+     */
+    public PlayerInt freshCopy() {
+        return new RecursivePython(letter);
+    }
+
 }
