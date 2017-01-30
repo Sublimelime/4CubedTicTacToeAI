@@ -37,20 +37,26 @@ public class RecursivePython implements PlayerInt {
      */
     @Override
     public LocationInt getMove(BoardInt board) {
-        int score;
+        int score, scoreTemp = 0;
         Location loc = null;
         for (int sheet = 0; sheet < board.numSheets(); sheet++) {
             for (int row = 0; row < board.numRows(); row++) {
                 for (int col = 0; col < board.numCols(); col++) {
-                    LocationScore ls = new LocationScore(board, new Location(sheet, row, col), letter);
-                    int scoreTemp = 0;
-                    score = (ls.getSelfQuadruples() * 1000) + (ls.getSelfTriples() * 100) + (ls.getSelfDoubles() * 10) + ls.getSelfSingles();
-                    if (score > scoreTemp) {
-                        loc = new Location(sheet, row, col);
+                    if (board.isEmpty(new Location(sheet, row, col))) {
+                        LocationScore ls = new LocationScore(board, new Location(sheet, row, col), letter);
+
+                        score = (ls.getSelfQuadruples() * 1000) + (ls.getSelfTriples() * 100) + (ls.getSelfDoubles() * 10) + ls.getSelfSingles();
+
+                        System.out.println("(" + sheet + "," + row + "," + col + ")  My score here is..." + score);
+                        if (score > scoreTemp) {
+                            scoreTemp = score;
+                            loc = new Location(sheet, row, col);
+                        }
                     }
                 }
             }
         }
+        System.out.println("I moved to..." + loc);
         return loc;
     }
 
