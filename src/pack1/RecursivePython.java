@@ -1,5 +1,7 @@
 package pack1;
 
+import java.util.ArrayList;
+import java.util.Random;
 import tully.*;
 
 /**
