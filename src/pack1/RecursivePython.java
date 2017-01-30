@@ -1,7 +1,5 @@
 package pack1;
 
-import java.util.ArrayList;
-import java.util.Random;
 import tully.*;
 
 /**
@@ -39,46 +37,21 @@ public class RecursivePython implements PlayerInt {
      */
     @Override
     public LocationInt getMove(BoardInt board) {
-        Random rand = new Random();
-        ArrayList<Location> zeros = new ArrayList<>();
-        ArrayList<Location> singles = new ArrayList<>();
-        ArrayList<Location> doubles = new ArrayList<>();
-        ArrayList<Location> triples = new ArrayList<>();
-        ArrayList<Location> quadruples = new ArrayList<>();
-
-        for (int x = 0; x < board.numRows(); x++) {
-            for (int y = 0; y < board.numRows(); y++) {
-                for (int z = 0; z < board.numRows(); z++) {
-                    if (board.isEmpty(new Location(z, y, x))) {
-                        LocationScore ls = new LocationScore(board, new Location(z, y, x), letter);
-                        if (ls.getSelfQuadruples() > 0) {
-                            quadruples.add(new Location(z, y, x));
-                        } else if (ls.getSelfTriples() > 0) {
-                            triples.add(new Location(z, y, x));
-                        } else if (ls.getSelfDoubles() > 0) {
-                            doubles.add(new Location(z, y, x));
-                        } else if (ls.getSelfSingles() > 0) {
-                            singles.add(new Location(z, y, x));
-                        } else {
-                            zeros.add(new Location(z, y, x));
-                        }
+        int score;
+        Location loc = null;
+        for (int sheet = 0; sheet < board.numSheets(); sheet++) {
+            for (int row = 0; row < board.numRows(); row++) {
+                for (int col = 0; col < board.numCols(); col++) {
+                    LocationScore ls = new LocationScore(board, new Location(sheet, row, col), letter);
+                    int scoreTemp = 0;
+                    score = (ls.getSelfQuadruples() * 1000) + (ls.getSelfTriples() * 100) + (ls.getSelfDoubles() * 10) + ls.getSelfSingles();
+                    if (score > scoreTemp) {
+                        loc = new Location(sheet, row, col);
                     }
                 }
             }
         }
-        if (quadruples.size() > 0) {
-            return quadruples.get(rand.nextInt(quadruples.size()));
-        } else if (triples.size() > 0) {
-            return triples.get(rand.nextInt(triples.size()));
-        } else if (doubles.size() > 0) {
-            return doubles.get(rand.nextInt(doubles.size()));
-        } else if (singles.size() > 0) {
-            return singles.get(rand.nextInt(singles.size()));
-        } else if (zeros.size() > 0) {
-            return zeros.get(rand.nextInt(zeros.size()));
-        } else {
-            return new Location(0, 0, 0);
-        }
+        return loc;
     }
 
     /**
