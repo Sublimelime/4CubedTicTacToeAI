@@ -1,6 +1,5 @@
 package pack1;
 
-import java.util.Random;
 import tully.*;
 
 /**
@@ -40,40 +39,18 @@ public class RecursivePython implements PlayerInt {
     public LocationInt getMove(BoardInt board) {
         int score;
         Location loc = null;
-        int scoreTemp = -1;
-
-        if (!movedRandomly) {
-            Location l;
-            Random rand = new Random();
-            do {
-                l = new Location(rand.nextInt(4), rand.nextInt(4), rand.nextInt(4));
-            } while (!board.isEmpty(l));
-
-            movedRandomly = true;
-            System.out.println("Moved randomly.");
-            return l;
-        }
-
         for (int sheet = 0; sheet < board.numSheets(); sheet++) {
             for (int row = 0; row < board.numRows(); row++) {
-                for (int col = 0; col < board.numCols(); col++) { //goes through the whole grid
-                    Location l = new Location(sheet, row, col);
-                    if (board.isEmpty(l)) {
-
-                        LocationScore ls = new LocationScore(board, l, letter); //determines the score for the current place
-
-                        score = (ls.getSelfQuadruples() * 1000) + (ls.getSelfTriples() * 100) + (ls.getSelfDoubles() * 10) + ls.getSelfSingles(); //Sets the score
-                        System.out.println(l + " Has a score of..." + score);
-                        if (score >= scoreTemp) { // If this place is better than all so far
-
-                            scoreTemp = score;
-                            loc = l;
-                        }
+                for (int col = 0; col < board.numCols(); col++) {
+                    LocationScore ls = new LocationScore(board, new Location(sheet, row, col), letter);
+                    int scoreTemp = 0;
+                    score = (ls.getSelfQuadruples() * 1000) + (ls.getSelfTriples() * 100) + (ls.getSelfDoubles() * 10) + ls.getSelfSingles();
+                    if (score > scoreTemp) {
+                        loc = new Location(sheet, row, col);
                     }
                 }
             }
         }
-        System.out.println("I moved to" + loc);
         return loc;
     }
 
