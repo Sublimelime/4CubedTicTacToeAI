@@ -65,27 +65,27 @@ public class RecursivePython implements PlayerInt {
                         LocationScore ls = new LocationScore(board, locCurrent, letter);
 
                         if (ls.getOtherQuadruples() > 0) {
-                            otherQuadruples.add(new Location(sheet, row, col));
+                            otherQuadruples.add(locCurrent);
                         } else if (ls.getOtherTriples() > 0) {
-                            otherTriples.add(new Location(sheet, row, col));
+                            otherTriples.add(locCurrent);
                         } else if (ls.getOtherDoubles() > 0) {
-                            otherDoubles.add(new Location(sheet, row, col));
+                            otherDoubles.add(locCurrent);
                         } else if (ls.getOtherSingles() > 0) {
-                            otherSingles.add(new Location(sheet, row, col));
+                            otherSingles.add(locCurrent);
                         } else {
-                            otherZeros.add(new Location(sheet, row, col));
+                            otherZeros.add(locCurrent);
                         }
 
                         if (ls.getSelfQuadruples() > 0) {
-                            selfQuadruples.add(new Location(sheet, row, col));
+                            selfQuadruples.add(locCurrent);
                         } else if (ls.getSelfTriples() > 0) {
-                            selfTriples.add(new Location(sheet, row, col));
+                            selfTriples.add(locCurrent);
                         } else if (ls.getSelfDoubles() > 0) {
-                            selfDoubles.add(new Location(sheet, row, col));
+                            selfDoubles.add(locCurrent);
                         } else if (ls.getSelfSingles() > 0) {
-                            selfSingles.add(new Location(sheet, row, col));
+                            selfSingles.add(locCurrent);
                         } else {
-                            selfZeros.add(new Location(sheet, row, col));
+                            selfZeros.add(locCurrent);
                         }
 
                         score = (ls.getSelfQuadruples() * 1000) + (ls.getSelfTriples() * 100) + (ls.getSelfDoubles() * 10) + ls.getSelfSingles();
@@ -94,7 +94,7 @@ public class RecursivePython implements PlayerInt {
                         //System.out.println("(" + sheet + "," + row + "," + col + ")  My score here is..." + score);
                         if (score > scoreTemp) { //If this location is the best so far
                             scoreTemp = score;
-                            locFinal = new Location(sheet, row, col);
+                            locFinal = locCurrent;
                         }
                     }
                 }
