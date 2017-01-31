@@ -101,6 +101,8 @@ public class RecursivePython implements PlayerInt {
             }
         }
 
+        //if()
+
         //System.out.println("I moved to..." + loc);
         return locFinal;
     }

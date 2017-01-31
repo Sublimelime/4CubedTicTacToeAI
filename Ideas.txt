@@ -1,0 +1,7 @@
+1. If other has a quad. move where other has quad.
+
+2. If we have a quad and they dont... win
+
+3. If other has a triple and we dont have a quad, block them
+
+4. 
