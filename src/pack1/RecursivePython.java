@@ -6,7 +6,7 @@ import tully.*;
  * An AI coded by Hunter Wright and Noah Morton
  *
  * @author Noah Morton/Hunter Wright Date created: Jan 25, 2017 Part of project:
- * TicTacToeAI
+ *         TicTacToeAI
  */
 public class RecursivePython implements PlayerInt {
 
@@ -48,9 +48,13 @@ public class RecursivePython implements PlayerInt {
                         LocationScore ls = new LocationScore(board, locCurrent, letter);
 
                         score = (ls.getSelfQuadruples() * 1000) + (ls.getSelfTriples() * 100) + (ls.getSelfDoubles() * 10) + ls.getSelfSingles();
+                        int otherScore = (ls.getOtherQuadruples() * 1000) + (ls.getOtherTriples() * 100) + (ls.getOtherDoubles() * 10) + ls.getOtherSingles();
 
                         //System.out.println("(" + sheet + "," + row + "," + col + ")  My score here is..." + score);
-                        if (score > scoreTemp) { //If this location is the best so far
+                        if (otherScore > score) {
+                            locFinal = locCurrent;
+                            scoreTemp = otherScore;
+                        } else if (score > scoreTemp) { //If this location is the best so far
                             scoreTemp = score;
                             locFinal = new Location(sheet, row, col);
                         }
