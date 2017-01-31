@@ -1,9 +1,8 @@
 package pack1;
 
-import tully.*;
-
 import java.util.ArrayList;
 import java.util.Random;
+import tully.*;
 
 /**
  * An AI coded by Hunter Wright and Noah Morton
@@ -59,15 +58,15 @@ public class RecursivePython implements PlayerInt {
                         LocationScore ls = new LocationScore(board, locCurrent, letter);
 
                         if (ls.getSelfQuadruples() > 0) {
-                            quadruples.add(new Location(sheet, row, col));
+                            quadruples.add(locCurrent);
                         } else if (ls.getSelfTriples() > 0) {
-                            triples.add(new Location(sheet, row, col));
+                            triples.add(locCurrent);
                         } else if (ls.getSelfDoubles() > 0) {
-                            doubles.add(new Location(sheet, row, col));
+                            doubles.add(locCurrent);
                         } else if (ls.getSelfSingles() > 0) {
-                            singles.add(new Location(sheet, row, col));
+                            singles.add(locCurrent);
                         } else {
-                            zeros.add(new Location(sheet, row, col));
+                            zeros.add(locCurrent);
                         }
 
                         score = (ls.getSelfQuadruples() * 1000) + (ls.getSelfTriples() * 100) + (ls.getSelfDoubles() * 10) + ls.getSelfSingles();
@@ -76,7 +75,7 @@ public class RecursivePython implements PlayerInt {
                         //System.out.println("(" + sheet + "," + row + "," + col + ")  My score here is..." + score);
                         if (score > scoreTemp) { //If this location is the best so far
                             scoreTemp = score;
-                            locFinal = new Location(sheet, row, col);
+                            locFinal = locCurrent;
                         }
                     }
                 }
