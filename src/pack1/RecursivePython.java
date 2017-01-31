@@ -43,13 +43,12 @@ public class RecursivePython implements PlayerInt {
             for (int row = 0; row < board.numRows(); row++) {
                 for (int col = 0; col < board.numCols(); col++) {
                     if (board.isEmpty(new Location(sheet, row, col))) { //If this spot is valid, ie not taken
-                        loc = new Location(sheet, row, col);
-                        LocationScore ls = new LocationScore(board, loc, letter);
+                        LocationScore ls = new LocationScore(board, new Location(sheet, row, col), letter);
 
                         score = (ls.getSelfQuadruples() * 1000) + (ls.getSelfTriples() * 100) + (ls.getSelfDoubles() * 10) + ls.getSelfSingles();
 
                         //System.out.println("(" + sheet + "," + row + "," + col + ")  My score here is..." + score);
-                        if (score >= scoreTemp) { //If this location is the best so far
+                        if (score > scoreTemp) { //If this location is the best so far
                             scoreTemp = score;
                             loc = new Location(sheet, row, col);
                         }
