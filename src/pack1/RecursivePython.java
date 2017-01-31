@@ -9,7 +9,7 @@ import java.util.Random;
  * An AI coded by Hunter Wright and Noah Morton
  *
  * @author Noah Morton/Hunter Wright Date created: Jan 25, 2017 Part of project:
- *         TicTacToeAI
+ * TicTacToeAI
  */
 public class RecursivePython implements PlayerInt {
 
@@ -40,7 +40,7 @@ public class RecursivePython implements PlayerInt {
      */
     @Override
     public LocationInt getMove(BoardInt board) {
-        int score, scoreTemp = 0;
+        int score, scoreTemp = 0, otherScore;
         Location locFinal = null;
 
         Random rand = new Random();
@@ -71,7 +71,7 @@ public class RecursivePython implements PlayerInt {
                         }
 
                         score = (ls.getSelfQuadruples() * 1000) + (ls.getSelfTriples() * 100) + (ls.getSelfDoubles() * 10) + ls.getSelfSingles();
-                        int otherScore = (ls.getOtherQuadruples() * 1000) + (ls.getOtherTriples() * 100) + (ls.getOtherDoubles() * 10) + ls.getOtherSingles();
+                        otherScore = (ls.getOtherQuadruples() * 1000) + (ls.getOtherTriples() * 100) + (ls.getOtherDoubles() * 10) + ls.getOtherSingles();
 
                         //System.out.println("(" + sheet + "," + row + "," + col + ")  My score here is..." + score);
                         if (score > scoreTemp) { //If this location is the best so far
