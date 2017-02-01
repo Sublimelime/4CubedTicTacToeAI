@@ -58,6 +58,7 @@ public class RecursivePython implements PlayerInt {
     public LocationInt getMove(BoardInt board) {
         int score, scoreTemp = 0;
         Location locFinal = null; //holds the location to be returned at the end.
+        LocationScore ls = null;
 
         Random rand = new Random();
         //clear and recreate all the arraylists
@@ -79,7 +80,7 @@ public class RecursivePython implements PlayerInt {
                     if (board.isEmpty(new Location(sheet, row, col))) { //If this spot is valid, ie not taken
                         Location locCurrent = new Location(sheet, row, col);
 
-                        LocationScore ls = new LocationScore(board, locCurrent, letter); //gets the location score of the current spot
+                        ls = new LocationScore(board, locCurrent, letter); //gets the location score of the current spot
 
                         if (ls.getOtherQuadruples() > 0) { //add the location to one of the arraylists for the enemy if the spot is good for them
                             otherQuadruples.add(locCurrent);
@@ -119,7 +120,13 @@ public class RecursivePython implements PlayerInt {
 
         //Logic for how to move ----------------------------------------------------
         //todo after this is done, old method with score should be unnecessary
-        //if()
+        //instant wins, stop instant win
+        if (ls.getSelfQuadruples() > 0) { //win immediatly
+            return selfQuadruples.get(0);
+        } else if (ls.getOtherQuadruples() > 0) { //block them from winning immediatly
+            return otherQuadruples.get(0);
+        }
+
         //System.out.println("I moved to..." + loc);
         return locFinal;
     }
