@@ -121,9 +121,9 @@ public class RecursivePython implements PlayerInt {
         //Logic for how to move ----------------------------------------------------
         //todo after this is done, old method with score should be unnecessary
         //instant wins, stop instant win
-        if (ls.getSelfQuadruples() > 0) { //win immediatly
+        if (ls.getSelfQuadruples() > 0) { //win immediately
             return selfQuadruples.get(0);
-        } else if (ls.getOtherQuadruples() > 0) { //block them from winning immediatly
+        } else if (ls.getOtherQuadruples() > 0) { //block them from winning immediately
             return otherQuadruples.get(0);
         }
 
