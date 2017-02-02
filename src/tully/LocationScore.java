@@ -289,7 +289,7 @@ public class LocationScore {
             count = 1;
             if (board.getLocation(new Location(0, 0, c)) == self)
                 count++;
-            if (board.getLocation(new Location(2, 1, c)) == self)
+            if (board.getLocation(new Location(1, 1, c)) == self)
                 count++;
             if (board.getLocation(new Location(2, 2, c)) == self)
                 count++;
