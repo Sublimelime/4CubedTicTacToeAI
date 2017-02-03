@@ -109,7 +109,7 @@ public class RecursivePython implements PlayerInt {
 
                         if(selfQuadruples.size() > 0) {
                             score += 10000;
-                        } else if()
+                        } //else if()
 
                         bestLocs.add(new ScoredLocation(locCurrent,score));
                         //System.out.println("(" + sheet + "," + row + "," + col + ")  My score here is..." + score);
