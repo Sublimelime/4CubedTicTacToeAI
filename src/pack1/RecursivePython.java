@@ -14,6 +14,8 @@ public class RecursivePython implements PlayerInt {
     private final char letter;
     private final String name;
 
+    ArrayList<ScoredLocation> bestLocs;
+
     //location arraylists
     ArrayList<Location> selfZeros;
     ArrayList<Location> selfSingles;
@@ -55,7 +57,7 @@ public class RecursivePython implements PlayerInt {
      */
     @Override
     public LocationInt getMove(BoardInt board) {
-        int score, scoreTemp = 0;
+        int score = 0;
         Location locFinal = null; //holds the location to be returned at the end.
         LocationScore ls = null;
 
@@ -105,13 +107,12 @@ public class RecursivePython implements PlayerInt {
                             selfZeros.add(locCurrent);
                         }
 
-                        score = (ls.getSelfQuadruples() * 1000) + (ls.getSelfTriples() * 100) + (ls.getSelfDoubles() * 10) + ls.getSelfSingles();
+                        if(selfQuadruples.size() > 0) {
+                            score += 10000;
+                        } else if()
 
+                        bestLocs.add(new ScoredLocation(locCurrent,score));
                         //System.out.println("(" + sheet + "," + row + "," + col + ")  My score here is..." + score);
-                        if (score > scoreTemp) { //If this location is the best so far
-                            scoreTemp = score;
-                            locFinal = locCurrent;
-                        }
                     }
                 }
             }
