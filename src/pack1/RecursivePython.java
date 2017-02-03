@@ -1,14 +1,15 @@
 package pack1;
 
+import tully.*;
+
 import java.util.ArrayList;
 import java.util.Random;
-import tully.*;
 
 /**
  * An AI coded by Hunter Wright and Noah Morton
  *
  * @author Noah Morton/Hunter Wright Date created: Jan 25, 2017 Part of project:
- * TicTacToeAI
+ *         TicTacToeAI
  */
 public class RecursivePython implements PlayerInt {
 

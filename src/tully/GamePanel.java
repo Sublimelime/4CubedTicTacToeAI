@@ -1,12 +1,13 @@
 package tully;
 
+import pack1.RecursivePython;
+
+import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import javax.swing.JPanel;
-import pack1.RecursivePython;
 
 public class GamePanel extends JPanel implements Runnable, MouseListener {
     // Sleep Timers
@@ -161,9 +162,9 @@ public class GamePanel extends JPanel implements Runnable, MouseListener {
                 } else {
                     if (AIs2.get(y) instanceof HumanPlayer == false) {
                         l = AIs2.get(y).getMove(new Board(board));
-                        if (board.isEmpty(l))
+                        if (board.isEmpty(l)) {
                             board.setLocation(l, 'O');
-                        else {
+                        } else {
                             System.out.println(AIs2.get(y).getName() + " failed to move.");
                         }
                         firstPlayersTurn = true;
