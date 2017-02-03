@@ -7,8 +7,7 @@ import tully.*;
 /**
  * An AI coded by Hunter Wright and Noah Morton
  *
- * @author Noah Morton/Hunter Wright Date created: Jan 25, 2017 Part of project:
- * TicTacToeAI
+ * @author Noah Morton/Hunter Wright Date created: Jan 25, 2017 Part of project: TicTacToeAI
  */
 public class RecursivePython implements PlayerInt {
 
