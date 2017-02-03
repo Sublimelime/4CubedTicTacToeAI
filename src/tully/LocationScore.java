@@ -123,19 +123,24 @@ public class LocationScore {
         count = 0;
         if (c == r) {
             count = 1;
-            if (board.getLocation(new Location(s, 0, 0)) == self)
+            if (board.getLocation(new Location(s, 0, 0)) == self) {
                 count++;
-            if (board.getLocation(new Location(s, 1, 1)) == self)
+            }
+            if (board.getLocation(new Location(s, 1, 1)) == self) {
                 count++;
-            if (board.getLocation(new Location(s, 2, 2)) == self)
+            }
+            if (board.getLocation(new Location(s, 2, 2)) == self) {
                 count++;
-            if (board.getLocation(new Location(s, 3, 3)) == self)
+            }
+            if (board.getLocation(new Location(s, 3, 3)) == self) {
                 count++;
+            }
             if (board.getLocation(new Location(s, 0, 0)) == other
                     || board.getLocation(new Location(s, 1, 1)) == other
                     || board.getLocation(new Location(s, 2, 2)) == other
-                    || board.getLocation(new Location(s, 3, 3)) == other)
+                    || board.getLocation(new Location(s, 3, 3)) == other) {
                 count = 0;
+            }
         }
         selfAdd(count);
 
@@ -143,19 +148,24 @@ public class LocationScore {
         count = 0;
         if (c == r) {
             count = 1;
-            if (board.getLocation(new Location(s, 0, 0)) == other)
+            if (board.getLocation(new Location(s, 0, 0)) == other) {
                 count++;
-            if (board.getLocation(new Location(s, 1, 1)) == other)
+            }
+            if (board.getLocation(new Location(s, 1, 1)) == other) {
                 count++;
-            if (board.getLocation(new Location(s, 2, 2)) == other)
+            }
+            if (board.getLocation(new Location(s, 2, 2)) == other) {
                 count++;
-            if (board.getLocation(new Location(s, 3, 3)) == other)
+            }
+            if (board.getLocation(new Location(s, 3, 3)) == other) {
                 count++;
+            }
             if (board.getLocation(new Location(s, 0, 0)) == self
                     || board.getLocation(new Location(s, 1, 1)) == self
                     || board.getLocation(new Location(s, 2, 2)) == self
-                    || board.getLocation(new Location(s, 3, 3)) == self)
+                    || board.getLocation(new Location(s, 3, 3)) == self) {
                 count = 0;
+            }
         }
         otherAdd(count);
 
@@ -164,19 +174,24 @@ public class LocationScore {
         count = 0;
         if (c + r == 3) {
             count = 1;
-            if (board.getLocation(new Location(s, 0, 3)) == self)
+            if (board.getLocation(new Location(s, 0, 3)) == self) {
                 count++;
-            if (board.getLocation(new Location(s, 1, 2)) == self)
+            }
+            if (board.getLocation(new Location(s, 1, 2)) == self) {
                 count++;
-            if (board.getLocation(new Location(s, 2, 1)) == self)
+            }
+            if (board.getLocation(new Location(s, 2, 1)) == self) {
                 count++;
-            if (board.getLocation(new Location(s, 3, 0)) == self)
+            }
+            if (board.getLocation(new Location(s, 3, 0)) == self) {
                 count++;
+            }
             if (board.getLocation(new Location(s, 0, 3)) == other
                     || board.getLocation(new Location(s, 1, 2)) == other
                     || board.getLocation(new Location(s, 2, 1)) == other
-                    || board.getLocation(new Location(s, 3, 0)) == other)
+                    || board.getLocation(new Location(s, 3, 0)) == other) {
                 count = 0;
+            }
         }
         selfAdd(count);
 
@@ -184,19 +199,24 @@ public class LocationScore {
         count = 0;
         if (c + r == 3) {
             count = 1;
-            if (board.getLocation(new Location(s, 0, 3)) == other)
+            if (board.getLocation(new Location(s, 0, 3)) == other) {
                 count++;
-            if (board.getLocation(new Location(s, 1, 2)) == other)
+            }
+            if (board.getLocation(new Location(s, 1, 2)) == other) {
                 count++;
-            if (board.getLocation(new Location(s, 2, 1)) == other)
+            }
+            if (board.getLocation(new Location(s, 2, 1)) == other) {
                 count++;
-            if (board.getLocation(new Location(s, 3, 0)) == other)
+            }
+            if (board.getLocation(new Location(s, 3, 0)) == other) {
                 count++;
+            }
             if (board.getLocation(new Location(s, 0, 3)) == self
                     || board.getLocation(new Location(s, 1, 2)) == self
                     || board.getLocation(new Location(s, 2, 1)) == self
-                    || board.getLocation(new Location(s, 3, 0)) == self)
+                    || board.getLocation(new Location(s, 3, 0)) == self) {
                 count = 0;
+            }
         }
         otherAdd(count);
 // I am here
@@ -205,19 +225,24 @@ public class LocationScore {
         count = 0;
         if (c == s) {
             count = 1;
-            if (board.getLocation(new Location(0, r, 0)) == self)
+            if (board.getLocation(new Location(0, r, 0)) == self) {
                 count++;
-            if (board.getLocation(new Location(1, r, 1)) == self)
+            }
+            if (board.getLocation(new Location(1, r, 1)) == self) {
                 count++;
-            if (board.getLocation(new Location(2, r, 2)) == self)
+            }
+            if (board.getLocation(new Location(2, r, 2)) == self) {
                 count++;
-            if (board.getLocation(new Location(3, r, 3)) == self)
+            }
+            if (board.getLocation(new Location(3, r, 3)) == self) {
                 count++;
+            }
             if (board.getLocation(new Location(0, r, 0)) == other
                     || board.getLocation(new Location(1, r, 1)) == other
                     || board.getLocation(new Location(2, r, 2)) == other
-                    || board.getLocation(new Location(3, r, 3)) == other)
+                    || board.getLocation(new Location(3, r, 3)) == other) {
                 count = 0;
+            }
         }
         selfAdd(count);
 
@@ -225,19 +250,24 @@ public class LocationScore {
         count = 0;
         if (c == s) {
             count = 1;
-            if (board.getLocation(new Location(0, r, 0)) == other)
+            if (board.getLocation(new Location(0, r, 0)) == other) {
                 count++;
-            if (board.getLocation(new Location(1, r, 1)) == other)
+            }
+            if (board.getLocation(new Location(1, r, 1)) == other) {
                 count++;
-            if (board.getLocation(new Location(2, r, 2)) == other)
+            }
+            if (board.getLocation(new Location(2, r, 2)) == other) {
                 count++;
-            if (board.getLocation(new Location(3, r, 3)) == other)
+            }
+            if (board.getLocation(new Location(3, r, 3)) == other) {
                 count++;
+            }
             if (board.getLocation(new Location(0, r, 0)) == self
                     || board.getLocation(new Location(1, r, 1)) == self
                     || board.getLocation(new Location(2, r, 2)) == self
-                    || board.getLocation(new Location(3, r, 3)) == self)
+                    || board.getLocation(new Location(3, r, 3)) == self) {
                 count = 0;
+            }
         }
         otherAdd(count);
 
@@ -246,19 +276,24 @@ public class LocationScore {
         count = 0;
         if (c + s == 3) {
             count = 1;
-            if (board.getLocation(new Location(0, r, 3)) == self)
+            if (board.getLocation(new Location(0, r, 3)) == self) {
                 count++;
-            if (board.getLocation(new Location(1, r, 2)) == self)
+            }
+            if (board.getLocation(new Location(1, r, 2)) == self) {
                 count++;
-            if (board.getLocation(new Location(2, r, 1)) == self)
+            }
+            if (board.getLocation(new Location(2, r, 1)) == self) {
                 count++;
-            if (board.getLocation(new Location(3, r, 0)) == self)
+            }
+            if (board.getLocation(new Location(3, r, 0)) == self) {
                 count++;
+            }
             if (board.getLocation(new Location(0, r, 3)) == other
                     || board.getLocation(new Location(1, r, 2)) == other
                     || board.getLocation(new Location(2, r, 1)) == other
-                    || board.getLocation(new Location(3, r, 0)) == other)
+                    || board.getLocation(new Location(3, r, 0)) == other) {
                 count = 0;
+            }
         }
         selfAdd(count);
 
@@ -266,19 +301,24 @@ public class LocationScore {
         count = 0;
         if (c + s == 3) {
             count = 1;
-            if (board.getLocation(new Location(0, r, 3)) == other)
+            if (board.getLocation(new Location(0, r, 3)) == other) {
                 count++;
-            if (board.getLocation(new Location(1, r, 2)) == other)
+            }
+            if (board.getLocation(new Location(1, r, 2)) == other) {
                 count++;
-            if (board.getLocation(new Location(2, r, 1)) == other)
+            }
+            if (board.getLocation(new Location(2, r, 1)) == other) {
                 count++;
-            if (board.getLocation(new Location(3, r, 0)) == other)
+            }
+            if (board.getLocation(new Location(3, r, 0)) == other) {
                 count++;
+            }
             if (board.getLocation(new Location(0, r, 3)) == self
                     || board.getLocation(new Location(1, r, 2)) == self
                     || board.getLocation(new Location(2, r, 1)) == self
-                    || board.getLocation(new Location(3, r, 0)) == self)
+                    || board.getLocation(new Location(3, r, 0)) == self) {
                 count = 0;
+            }
         }
         otherAdd(count);
 
@@ -287,19 +327,24 @@ public class LocationScore {
         count = 0;
         if (r == s) {
             count = 1;
-            if (board.getLocation(new Location(0, 0, c)) == self)
+            if (board.getLocation(new Location(0, 0, c)) == self) {
                 count++;
-            if (board.getLocation(new Location(1, 1, c)) == self)
+            }
+            if (board.getLocation(new Location(1, 1, c)) == self) {
                 count++;
-            if (board.getLocation(new Location(2, 2, c)) == self)
+            }
+            if (board.getLocation(new Location(2, 2, c)) == self) {
                 count++;
-            if (board.getLocation(new Location(3, 3, c)) == self)
+            }
+            if (board.getLocation(new Location(3, 3, c)) == self) {
                 count++;
+            }
             if (board.getLocation(new Location(0, 0, c)) == other
                     || board.getLocation(new Location(1, 1, c)) == other
                     || board.getLocation(new Location(2, 2, c)) == other
-                    || board.getLocation(new Location(3, 3, c)) == other)
+                    || board.getLocation(new Location(3, 3, c)) == other) {
                 count = 0;
+            }
         }
         selfAdd(count);
 
@@ -307,19 +352,24 @@ public class LocationScore {
         count = 0;
         if (r == s) {
             count = 1;
-            if (board.getLocation(new Location(0, 0, c)) == other)
+            if (board.getLocation(new Location(0, 0, c)) == other) {
                 count++;
-            if (board.getLocation(new Location(1, 1, c)) == other)
+            }
+            if (board.getLocation(new Location(1, 1, c)) == other) {
                 count++;
-            if (board.getLocation(new Location(2, 2, c)) == other)
+            }
+            if (board.getLocation(new Location(2, 2, c)) == other) {
                 count++;
-            if (board.getLocation(new Location(3, 3, c)) == other)
+            }
+            if (board.getLocation(new Location(3, 3, c)) == other) {
                 count++;
+            }
             if (board.getLocation(new Location(0, 0, c)) == self
                     || board.getLocation(new Location(1, 1, c)) == self
                     || board.getLocation(new Location(2, 2, c)) == self
-                    || board.getLocation(new Location(3, 3, c)) == self)
+                    || board.getLocation(new Location(3, 3, c)) == self) {
                 count = 0;
+            }
         }
         otherAdd(count);
 
@@ -328,19 +378,24 @@ public class LocationScore {
         count = 0;
         if (s + r == 3) {
             count = 1;
-            if (board.getLocation(new Location(0, 3, c)) == self)
+            if (board.getLocation(new Location(0, 3, c)) == self) {
                 count++;
-            if (board.getLocation(new Location(1, 2, c)) == self)
+            }
+            if (board.getLocation(new Location(1, 2, c)) == self) {
                 count++;
-            if (board.getLocation(new Location(2, 1, c)) == self)
+            }
+            if (board.getLocation(new Location(2, 1, c)) == self) {
                 count++;
-            if (board.getLocation(new Location(3, 0, c)) == self)
+            }
+            if (board.getLocation(new Location(3, 0, c)) == self) {
                 count++;
+            }
             if (board.getLocation(new Location(0, 3, c)) == other
                     || board.getLocation(new Location(1, 2, c)) == other
                     || board.getLocation(new Location(2, 1, c)) == other
-                    || board.getLocation(new Location(3, 0, c)) == other)
+                    || board.getLocation(new Location(3, 0, c)) == other) {
                 count = 0;
+            }
         }
         selfAdd(count);
 
@@ -348,19 +403,24 @@ public class LocationScore {
         count = 0;
         if (s + r == 3) {
             count = 1;
-            if (board.getLocation(new Location(0, 3, c)) == other)
+            if (board.getLocation(new Location(0, 3, c)) == other) {
                 count++;
-            if (board.getLocation(new Location(1, 2, c)) == other)
+            }
+            if (board.getLocation(new Location(1, 2, c)) == other) {
                 count++;
-            if (board.getLocation(new Location(2, 1, c)) == other)
+            }
+            if (board.getLocation(new Location(2, 1, c)) == other) {
                 count++;
-            if (board.getLocation(new Location(3, 0, c)) == other)
+            }
+            if (board.getLocation(new Location(3, 0, c)) == other) {
                 count++;
+            }
             if (board.getLocation(new Location(0, 3, c)) == self
                     || board.getLocation(new Location(1, 2, c)) == self
                     || board.getLocation(new Location(2, 1, c)) == self
-                    || board.getLocation(new Location(3, 0, c)) == self)
+                    || board.getLocation(new Location(3, 0, c)) == self) {
                 count = 0;
+            }
         }
         otherAdd(count);
 
@@ -369,19 +429,24 @@ public class LocationScore {
         count = 0;
         if (c == r && r == s) {
             count = 1;
-            if (board.getLocation(new Location(0, 0, 0)) == self)
+            if (board.getLocation(new Location(0, 0, 0)) == self) {
                 count++;
-            if (board.getLocation(new Location(1, 1, 1)) == self)
+            }
+            if (board.getLocation(new Location(1, 1, 1)) == self) {
                 count++;
-            if (board.getLocation(new Location(2, 2, 2)) == self)
+            }
+            if (board.getLocation(new Location(2, 2, 2)) == self) {
                 count++;
-            if (board.getLocation(new Location(3, 3, 3)) == self)
+            }
+            if (board.getLocation(new Location(3, 3, 3)) == self) {
                 count++;
+            }
             if (board.getLocation(new Location(0, 0, 0)) == other
                     || board.getLocation(new Location(1, 1, 1)) == other
                     || board.getLocation(new Location(2, 2, 2)) == other
-                    || board.getLocation(new Location(3, 3, 3)) == other)
+                    || board.getLocation(new Location(3, 3, 3)) == other) {
                 count = 0;
+            }
         }
         selfAdd(count);
 
@@ -389,19 +454,24 @@ public class LocationScore {
         count = 0;
         if (c == r && r == s) {
             count = 1;
-            if (board.getLocation(new Location(0, 0, 0)) == other)
+            if (board.getLocation(new Location(0, 0, 0)) == other) {
                 count++;
-            if (board.getLocation(new Location(1, 1, 1)) == other)
+            }
+            if (board.getLocation(new Location(1, 1, 1)) == other) {
                 count++;
-            if (board.getLocation(new Location(2, 2, 2)) == other)
+            }
+            if (board.getLocation(new Location(2, 2, 2)) == other) {
                 count++;
-            if (board.getLocation(new Location(3, 3, 3)) == other)
+            }
+            if (board.getLocation(new Location(3, 3, 3)) == other) {
                 count++;
+            }
             if (board.getLocation(new Location(0, 0, 0)) == self
                     || board.getLocation(new Location(1, 1, 1)) == self
                     || board.getLocation(new Location(2, 2, 2)) == self
-                    || board.getLocation(new Location(3, 3, 3)) == self)
+                    || board.getLocation(new Location(3, 3, 3)) == self) {
                 count = 0;
+            }
         }
         otherAdd(count);
 
@@ -413,19 +483,24 @@ public class LocationScore {
                 || (c == 1 && r == 2 && s == 2)
                 || (c == 0 && r == 3 && s == 3)) {
             count = 1;
-            if (board.getLocation(new Location(0, 0, 3)) == self)
+            if (board.getLocation(new Location(0, 0, 3)) == self) {
                 count++;
-            if (board.getLocation(new Location(1, 1, 2)) == self)
+            }
+            if (board.getLocation(new Location(1, 1, 2)) == self) {
                 count++;
-            if (board.getLocation(new Location(2, 2, 1)) == self)
+            }
+            if (board.getLocation(new Location(2, 2, 1)) == self) {
                 count++;
-            if (board.getLocation(new Location(3, 3, 0)) == self)
+            }
+            if (board.getLocation(new Location(3, 3, 0)) == self) {
                 count++;
+            }
             if (board.getLocation(new Location(0, 0, 3)) == other
                     || board.getLocation(new Location(1, 1, 2)) == other
                     || board.getLocation(new Location(2, 2, 1)) == other
-                    || board.getLocation(new Location(3, 3, 0)) == other)
+                    || board.getLocation(new Location(3, 3, 0)) == other) {
                 count = 0;
+            }
         }
 
         selfAdd(count);
@@ -436,19 +511,24 @@ public class LocationScore {
                 || (c == 1 && r == 2 && s == 2)
                 || (c == 0 && r == 3 && s == 3)) {
             count = 1;
-            if (board.getLocation(new Location(0, 0, 3)) == other)
+            if (board.getLocation(new Location(0, 0, 3)) == other) {
                 count++;
-            if (board.getLocation(new Location(1, 1, 2)) == other)
+            }
+            if (board.getLocation(new Location(1, 1, 2)) == other) {
                 count++;
-            if (board.getLocation(new Location(2, 2, 1)) == other)
+            }
+            if (board.getLocation(new Location(2, 2, 1)) == other) {
                 count++;
-            if (board.getLocation(new Location(3, 3, 0)) == other)
+            }
+            if (board.getLocation(new Location(3, 3, 0)) == other) {
                 count++;
+            }
             if (board.getLocation(new Location(0, 0, 3)) == self
                     || board.getLocation(new Location(1, 1, 2)) == self
                     || board.getLocation(new Location(2, 2, 1)) == self
-                    || board.getLocation(new Location(3, 3, 0)) == self)
+                    || board.getLocation(new Location(3, 3, 0)) == self) {
                 count = 0;
+            }
         }
 
         otherAdd(count);
@@ -461,19 +541,24 @@ public class LocationScore {
                 || (c == 2 && r == 1 && s == 2)
                 || (c == 3 && r == 0 && s == 3)) {
             count = 1;
-            if (board.getLocation(new Location(0, 3, 0)) == self)
+            if (board.getLocation(new Location(0, 3, 0)) == self) {
                 count++;
-            if (board.getLocation(new Location(1, 2, 1)) == self)
+            }
+            if (board.getLocation(new Location(1, 2, 1)) == self) {
                 count++;
-            if (board.getLocation(new Location(2, 1, 2)) == self)
+            }
+            if (board.getLocation(new Location(2, 1, 2)) == self) {
                 count++;
-            if (board.getLocation(new Location(3, 0, 3)) == self)
+            }
+            if (board.getLocation(new Location(3, 0, 3)) == self) {
                 count++;
+            }
             if (board.getLocation(new Location(0, 3, 0)) == other
                     || board.getLocation(new Location(1, 2, 1)) == other
                     || board.getLocation(new Location(2, 1, 2)) == other
-                    || board.getLocation(new Location(3, 0, 3)) == other)
+                    || board.getLocation(new Location(3, 0, 3)) == other) {
                 count = 0;
+            }
         }
         selfAdd(count);
         //other
@@ -483,19 +568,24 @@ public class LocationScore {
                 || (c == 2 && r == 1 && s == 2)
                 || (c == 3 && r == 0 && s == 3)) {
             count = 1;
-            if (board.getLocation(new Location(0, 3, 0)) == other)
+            if (board.getLocation(new Location(0, 3, 0)) == other) {
                 count++;
-            if (board.getLocation(new Location(1, 2, 1)) == other)
+            }
+            if (board.getLocation(new Location(1, 2, 1)) == other) {
                 count++;
-            if (board.getLocation(new Location(2, 1, 2)) == other)
+            }
+            if (board.getLocation(new Location(2, 1, 2)) == other) {
                 count++;
-            if (board.getLocation(new Location(3, 0, 3)) == other)
+            }
+            if (board.getLocation(new Location(3, 0, 3)) == other) {
                 count++;
+            }
             if (board.getLocation(new Location(0, 3, 0)) == self
                     || board.getLocation(new Location(1, 2, 1)) == self
                     || board.getLocation(new Location(2, 1, 2)) == self
-                    || board.getLocation(new Location(3, 0, 3)) == self)
+                    || board.getLocation(new Location(3, 0, 3)) == self) {
                 count = 0;
+            }
         }
         otherAdd(count);
 
@@ -506,19 +596,24 @@ public class LocationScore {
                 || (c == 1 && r == 1 && s == 2)
                 || (c == 0 && r == 0 && s == 3)) {
             count = 1;
-            if (board.getLocation(new Location(0, 3, 3)) == self)
+            if (board.getLocation(new Location(0, 3, 3)) == self) {
                 count++;
-            if (board.getLocation(new Location(1, 2, 2)) == self)
+            }
+            if (board.getLocation(new Location(1, 2, 2)) == self) {
                 count++;
-            if (board.getLocation(new Location(2, 1, 1)) == self)
+            }
+            if (board.getLocation(new Location(2, 1, 1)) == self) {
                 count++;
-            if (board.getLocation(new Location(3, 0, 0)) == self)
+            }
+            if (board.getLocation(new Location(3, 0, 0)) == self) {
                 count++;
+            }
             if (board.getLocation(new Location(0, 3, 3)) == other
                     || board.getLocation(new Location(1, 2, 2)) == other
                     || board.getLocation(new Location(2, 1, 1)) == other
-                    || board.getLocation(new Location(3, 0, 0)) == other)
+                    || board.getLocation(new Location(3, 0, 0)) == other) {
                 count = 0;
+            }
         }
 
         selfAdd(count);
@@ -529,19 +624,24 @@ public class LocationScore {
                 || (c == 1 && r == 1 && s == 2)
                 || (c == 0 && r == 0 && s == 3)) {
             count = 1;
-            if (board.getLocation(new Location(0, 3, 3)) == other)
+            if (board.getLocation(new Location(0, 3, 3)) == other) {
                 count++;
-            if (board.getLocation(new Location(1, 2, 2)) == other)
+            }
+            if (board.getLocation(new Location(1, 2, 2)) == other) {
                 count++;
-            if (board.getLocation(new Location(2, 1, 1)) == other)
+            }
+            if (board.getLocation(new Location(2, 1, 1)) == other) {
                 count++;
-            if (board.getLocation(new Location(3, 0, 0)) == other)
+            }
+            if (board.getLocation(new Location(3, 0, 0)) == other) {
                 count++;
+            }
             if (board.getLocation(new Location(0, 3, 3)) == self
                     || board.getLocation(new Location(1, 2, 2)) == self
                     || board.getLocation(new Location(2, 1, 1)) == self
-                    || board.getLocation(new Location(3, 0, 0)) == self)
+                    || board.getLocation(new Location(3, 0, 0)) == self) {
                 count = 0;
+            }
         }
 
         otherAdd(count);
