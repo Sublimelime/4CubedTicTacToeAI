@@ -1,7 +1,7 @@
 package tully;
 
-import pack1.RecursivePython;
 
+import pack1.Espresso;
 import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -50,8 +50,8 @@ public class GamePanel extends JPanel implements Runnable, MouseListener {
 
         //AIs1.add(new Test_AI_2('X'));
         //AIs2.add(new Test_AI_2('O'));
-        AIs1.add(new RecursivePython('X'));
-        AIs2.add(new RecursivePython('O'));
+        AIs1.add(new Espresso('X'));
+        AIs2.add(new Espresso('O'));
 
         //AIs1.add(new HumanPlayer('X',"Tully"));
         //AIs2.add(new HumanPlayer('O',"Tully"));

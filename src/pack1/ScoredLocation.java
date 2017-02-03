@@ -35,4 +35,14 @@ public class ScoredLocation extends Location implements LocationInt {
         this.scoreOfLocation = scoreOfLocation;
     }
 
+    /**
+     * Changes the class back into a regular location, so it interfaces with the AI dispatcher.
+     *
+     * @return A new Location with the sheet,row, and col of the current location.
+     * @see tully.Location
+     */
+    public Location makeLocationOnly() {
+        return new Location(getSheet(), getRow(), getCol());
+    }
+
 }

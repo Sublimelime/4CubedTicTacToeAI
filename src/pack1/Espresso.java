@@ -9,7 +9,7 @@ import tully.*;
  *
  * @author Noah Morton/Hunter Wright Date created: Jan 25, 2017 Part of project: TicTacToeAI
  */
-public class RecursivePython implements PlayerInt {
+public class Espresso implements PlayerInt {
 
     private final char letter;
     private final String name;
@@ -34,7 +34,7 @@ public class RecursivePython implements PlayerInt {
      *
      * @param letter The letter the AI will be playing as.
      */
-    public RecursivePython(char letter) {
+    public Espresso(char letter) {
         this.letter = letter;
         this.name = "Recursive Python";
     }
@@ -107,11 +107,11 @@ public class RecursivePython implements PlayerInt {
                             selfZeros.add(locCurrent);
                         }
 
-                        if(selfQuadruples.size() > 0) {
+                        if (selfQuadruples.size() > 0) {
                             score += 10000;
-                        } else if()
-
-                        bestLocs.add(new ScoredLocation(locCurrent,score));
+                        } else if () {
+                            bestLocs.add(new ScoredLocation(locCurrent, score));
+                        }
                         //System.out.println("(" + sheet + "," + row + "," + col + ")  My score here is..." + score);
                     }
                 }
@@ -148,7 +148,7 @@ public class RecursivePython implements PlayerInt {
      * @return A new instance of this file.
      */
     public PlayerInt freshCopy() {
-        return new RecursivePython(letter);
+        return new Espresso(letter);
     }
 
 }
