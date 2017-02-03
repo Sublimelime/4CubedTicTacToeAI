@@ -126,22 +126,9 @@ public class RecursivePython implements PlayerInt {
             return otherQuadruples.get(0);
         }
 
-        if (otherTriples.size() > 0) { //they have a triple
-            return otherTriples.get(0);
-        }
-
         //attack code
-        if (selfTriples.size() > 0) { //move on an existing triple
-            return selfTriples.get(rand.nextInt(selfTriples.size()));
-        } else if (selfDoubles.size() > 0) {
-            return selfDoubles.get(rand.nextInt(selfDoubles.size()));
-        } else if (selfSingles.size() > 0) {
-            return selfSingles.get(rand.nextInt(selfSingles.size()));
-        } else {
-            return selfZeros.get(rand.nextInt(selfZeros.size())); //todo this may cause issues if board is near cat
-        }
-
         //System.out.println("I moved to..." + loc);
+        return null;
     }
 
     /**
