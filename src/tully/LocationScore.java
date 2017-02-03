@@ -373,7 +373,7 @@ public class LocationScore {
         }
         otherAdd(count);
 
-        // diangonal two in X plane
+        // diagonal two in X plane
         // done
         count = 0;
         if (s + r == 3) {
