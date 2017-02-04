@@ -1,15 +1,14 @@
 package pack1;
 
-import tully.*;
-
 import java.util.ArrayList;
 import java.util.Random;
+import tully.*;
 
 /**
  * An AI coded by Hunter Wright and Noah Morton
  *
  * @author Noah Morton/Hunter Wright Date created: Jan 25, 2017 Part of project:
- *         TicTacToeAI
+ * TicTacToeAI
  */
 public class Espresso implements PlayerInt {
 
@@ -109,17 +108,20 @@ public class Espresso implements PlayerInt {
                             selfZeros.add(locCurrent);
                         }
 
-                        if (selfQuadruples.size() > 0) {
+                        if (selfQuadruples.size() > 0) { //todo finish laying out scoring algorithm
                             score += 10000;
                         } //else if()
 
-                        bestLocs.add(new ScoredLocation(locCurrent, score));
+                        bestLocs.add(new ScoredLocation(locCurrent, score)); //always add the location to the list.
                         //System.out.println("(" + sheet + "," + row + "," + col + ")  My score here is..." + score);
                     }
                 }
             }
         }
+        bestLocs.sort(null); //sort the list of locations.
+        bestLocs = (ArrayList<ScoredLocation>) bestLocs.subList(0, 4); //trim the list down to only top 5 entries
 
+        //todo re-evaluate the remaining moves after the previous operation
         //Logic for how to move ----------------------------------------------------
         //todo after this is done, old method with score should be unnecessary
         //instant wins, stop instant win
