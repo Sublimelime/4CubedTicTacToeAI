@@ -36,14 +36,14 @@ public class ScoredLocation extends Location implements LocationInt, Comparable<
     }
 
     /**
-     * Changes the class back into a regular location, so it interfaces with the
-     * AI dispatcher.
+     * Returns a new location. Can be used to change the class back into a
+     * regular location, so it interfaces with the AI dispatcher.
      *
      * @return A new Location with the sheet,row, and col of the current
      * location.
      * @see tully.Location
      */
-    public Location makeLocationOnly() {
+    public Location getLocation() {
         return new Location(getSheet(), getRow(), getCol());
     }
 
@@ -60,12 +60,13 @@ public class ScoredLocation extends Location implements LocationInt, Comparable<
     }
 
     /**
-     * Compares 'this' and the provided Object for their scores. They are
-     * considered equal if they have the same memory address, or the same score.
+     * Compares 'this' and the provided Object for their scores and location.
+     * They are considered equal if they have the same memory address, or the
+     * same score and location.
      *
      * @param o Object to check for equivalency.
-     * @return True if they are both ScoredLocations and the scores match. _Does
-     * not compare location._
+     * @return True if they are both ScoredLocations and the scores/locations
+     * match.
      */
     @Override
     public boolean equals(Object o) {
@@ -73,17 +74,16 @@ public class ScoredLocation extends Location implements LocationInt, Comparable<
             return true;
         } else if (o instanceof ScoredLocation) {
             ScoredLocation temp = (ScoredLocation) o;
-            if (temp.getScoreOfLocation() == this.scoreOfLocation) {
+            if (temp.getScoreOfLocation() == this.scoreOfLocation && temp.getCol() == getCol()
+                    && temp.getRow() == getRow() && temp.getSheet() == getSheet()) {
+                return true;
+            }
+        } else if (o instanceof Location) {
+            Location temp = (Location) o;
+            if (temp.getCol() == getCol() && temp.getRow() == getRow() && temp.getSheet() == getSheet()) {
                 return true;
             }
         }
         return false;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 89 * hash + this.scoreOfLocation;
-        return hash;
     }
 }
