@@ -1,14 +1,15 @@
 package pack1;
 
+import tully.*;
+
 import java.util.ArrayList;
 import java.util.Random;
-import tully.*;
 
 /**
  * An AI coded by Hunter Wright and Noah Morton
  *
  * @author Noah Morton/Hunter Wright Date created: Jan 25, 2017 Part of project:
- * TicTacToeAI
+ *         TicTacToeAI
  */
 public class Espresso implements PlayerInt {
 
@@ -110,7 +111,12 @@ public class Espresso implements PlayerInt {
 
                         if (selfQuadruples.size() > 0) { //todo finish laying out scoring algorithm
                             score += 10000;
-                        } //else if()
+                        }
+                        for (int i = 0; i < selfDoubles.size(); i++) {
+                            if (!(isAdjacent(selfDoubles.get(i), locCurrent))) {
+                                score *= .5;
+                            }
+                        }
 
                         bestLocs.add(new ScoredLocation(locCurrent, score)); //always add the location to the list.
                         //System.out.println("(" + sheet + "," + row + "," + col + ")  My score here is..." + score);
