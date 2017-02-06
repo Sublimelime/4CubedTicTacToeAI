@@ -1,15 +1,14 @@
 package pack1;
 
-import tully.*;
-
 import java.util.ArrayList;
 import java.util.Random;
+import tully.*;
 
 /**
  * An AI coded by Hunter Wright and Noah Morton
  *
  * @author Noah Morton/Hunter Wright Date created: Jan 25, 2017 Part of project:
- *         TicTacToeAI
+ * TicTacToeAI
  */
 public class Espresso implements PlayerInt {
 
@@ -60,7 +59,6 @@ public class Espresso implements PlayerInt {
     @Override
     public LocationInt getMove(BoardInt board) {
         int score = 0;
-        System.out.println(isAdjacent(new Location(0, 0, 0), new Location(1, 0, 1)));
         Location locFinal = null; //holds the location to be returned at the end.
         LocationScore ls = null;
 
@@ -128,7 +126,6 @@ public class Espresso implements PlayerInt {
             }
         }
         bestLocs.sort(null); //sort the list of locations.
-        bestLocs = (ArrayList<ScoredLocation>) bestLocs.subList(0, 4); //trim the list down to only top 5 entries
 
         //todo re-evaluate the remaining moves after the previous operation
         //Logic for how to move ----------------------------------------------------
@@ -142,7 +139,7 @@ public class Espresso implements PlayerInt {
 
         //attack code
         //System.out.println("I moved to..." + loc);
-        return null;
+        return bestLocs.get(0);
     }
 
     /**
