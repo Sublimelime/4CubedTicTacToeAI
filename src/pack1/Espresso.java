@@ -78,6 +78,8 @@ public class Espresso implements PlayerInt {
         otherTriples = new ArrayList<>();
         otherQuadruples = new ArrayList<>();
 
+        bestLocs = new ArrayList<>();
+
         for (int sheet = 0; sheet < board.numSheets(); sheet++) { //Go through all the spots on the board
             for (int row = 0; row < board.numRows(); row++) {
                 for (int col = 0; col < board.numCols(); col++) {
@@ -113,9 +115,9 @@ public class Espresso implements PlayerInt {
                         if (selfQuadruples.size() > 0) { //todo finish laying out scoring algorithm
                             score += 10000;
                         }
-                        for (int i = 0; i < selfDoubles.size(); i++) {
-                            if (!(isAdjacent(selfDoubles.get(i), locCurrent))) {
-                                score *= .5;
+                        for (int i = 0; i < selfDoubles.size(); i++) { // For loop to go through every index in selfDoubles list
+                            if (!(isAdjacent(selfDoubles.get(i), locCurrent))) { // If locCurrent is not adjacent to the current index
+                                score *= .5; // The score is halved
                             }
                         }
 
