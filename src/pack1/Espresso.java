@@ -7,8 +7,7 @@ import tully.*;
 /**
  * An AI coded by Hunter Wright and Noah Morton
  *
- * @author Noah Morton/Hunter Wright Date created: Jan 25, 2017 Part of project:
- * TicTacToeAI
+ * @author Noah Morton/Hunter Wright Date created: Jan 25, 2017 Part of project: TicTacToeAI
  */
 public class Espresso implements PlayerInt {
 
@@ -59,6 +58,7 @@ public class Espresso implements PlayerInt {
     @Override
     public LocationInt getMove(BoardInt board) {
         int score = 0;
+        System.out.println(isAdjacent(new Location(0, 0, 0), new Location(1, 0, 1)));
         Location locFinal = null; //holds the location to be returned at the end.
         LocationScore ls = null;
 
@@ -134,6 +134,28 @@ public class Espresso implements PlayerInt {
         //attack code
         //System.out.println("I moved to..." + loc);
         return null;
+    }
+
+    /**
+     * Checks if two provided locations are adjacent to each other.
+     *
+     * @param one First location
+     * @param two Second location
+     * @return A boolean, true if 'two' is adjacent to 'one'.
+     */
+    private boolean isAdjacent(LocationInt one, LocationInt two) {
+        //Logic is only two may be true, not one or three may be true. Tests for adjacency
+        //if (2 == ((one.getCol() == two.getCol()) ? 1 : 0) + ((one.getRow() == two.getRow()) ? 1 : 0) + ((one.getSheet() == two.getSheet()) ? 1 : 0)) {
+        int oneCol = one.getCol(), twoCol = two.getCol(), oneRow = one.getRow(), twoRow = two.getRow(),
+                oneSheet = one.getSheet(), twoSheet = two.getSheet();
+
+        //This is the worst if I have ever written. Checks for if exactly 2/3 vars are within one. Checks adjacency
+        if (2 == ((Math.abs((double) oneCol - (double) twoCol) == 1) ? 1 : 0)
+                + ((Math.abs((double) oneRow - (double) twoRow) == 1) ? 1 : 0)
+                + ((Math.abs((double) oneSheet - (double) twoSheet) == 1) ? 1 : 0)) {
+            return true;
+        }
+        return false;
     }
 
     /**
