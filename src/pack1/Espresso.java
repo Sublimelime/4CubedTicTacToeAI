@@ -59,7 +59,6 @@ public class Espresso implements PlayerInt {
     @Override
     public LocationInt getMove(BoardInt board) {
         int score = 0;
-        Location locFinal = null; //holds the location to be returned at the end.
         LocationScore ls = null;
 
         Random rand = new Random();
