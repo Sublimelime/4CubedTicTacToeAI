@@ -1,5 +1,6 @@
 package tully;
 
+/* LocationScore - Stores a location and scoring values */
 public class LocationScore {
 
     private char self;
@@ -21,6 +22,8 @@ public class LocationScore {
     private int r;
     private int s;
 
+    /* Pre:		receives a game board, location and letter
+	 * Post: 	creates scoring that for the received locationa and received letter*/
     public LocationScore(BoardInt board, LocationInt loc, char letter) {
         this.board = board;
         this.self = letter;
@@ -37,10 +40,16 @@ public class LocationScore {
         calculateScore();
     }
 
+    /* Pre:		None
+	 * Post: 	returns the location */
     public LocationInt getLocation() {
         return loc;
     }
 
+    /* Pre:	None
+	 * Post: assigns values to singles, otherSingles, double, otherDoubles, triples, otherTriples,
+	 * quadrupples and other quadruples, base on how many 1, 2, 3, 4 in a rows your or your opponent
+	 * would have by going to this location */
     public void calculateScore() {
         int count;
 
@@ -373,7 +382,7 @@ public class LocationScore {
         }
         otherAdd(count);
 
-        // diagonal two in X plane
+        // diangonal two in X plane
         // done
         count = 0;
         if (s + r == 3) {
@@ -647,22 +656,34 @@ public class LocationScore {
         otherAdd(count);
     }
 
+    /* Pre:		None
+	 * Post: 	returns how many 1 in a rows your oppenent would have by moving to this location */
     public int getSelfSingles() {
         return selfSingles;
     }
 
+    /* Pre:		None
+	 * Post: 	returns how many 2 in a rows your oppenent would have by moving to this location */
     public int getSelfDoubles() {
         return selfDoubles;
     }
 
+    /* Pre:		None
+	 * Post: 	returns how many 3 in a rows your oppenent would have by moving to this location */
     public int getSelfTriples() {
         return selfTriples;
     }
 
+    /* Pre:		None
+	 * Post: 	returns how many 4 in a rows your oppenent would have by moving to this location */
     public int getSelfQuadruples() {
         return selfQuadruples;
     }
 
+    /* Pre:		receives the number of items the would have lined
+	 *	up by going to the stored location
+	 * Post: 	adds to the singles, doubles, tripples or quadruples counter, based on the
+	 * received value*/
     private void selfAdd(int t) {
         if (t == 1) {
             selfSingles++;
@@ -678,22 +699,34 @@ public class LocationScore {
         }
     }
 
+    /* Pre:		None
+	 * Post: 	returns how many 1 in a rows your oppenent would have by moving to this location */
     public int getOtherSingles() {
         return otherSingles;
     }
 
+    /* Pre:		None
+	 * Post: 	returns how many 2 in a rows your oppenent would have by moving to this location */
     public int getOtherDoubles() {
         return otherDoubles;
     }
 
+    /* Pre:		None
+	 * Post: 	returns how many 3 in a rows your oppenent would have by moving to this location */
     public int getOtherTriples() {
         return otherTriples;
     }
 
+    /* Pre:		None
+	 * Post: 	returns how many 4 in a rows your oppenent would have by moving to this location */
     public int getOtherQuadruples() {
         return otherQuadruples;
     }
 
+    /* Pre:		receives the number of items the would have lined
+	 *	up by going to the stored location
+	 * Post: 	adds to the otherSingles, otherDoubles, otherTripples or otherQuadruples counter, based on the
+	 * received value*/
     private void otherAdd(int t) {
         if (t == 1) {
             otherSingles++;
@@ -709,14 +742,20 @@ public class LocationScore {
         }
     }
 
+    /* Pre:		None
+	 * Post: 	returns the column (x) of the location */
     public int getCol() {
         return c;
     }
 
+    /* Pre:		None
+	 * Post: 	returns the row (y) of the location */
     public int getRow() {
         return r;
     }
 
+    /* Pre:		None
+	 * Post: 	returns the sheet (z) of the location */
     public int getSheet() {
         return s;
     }

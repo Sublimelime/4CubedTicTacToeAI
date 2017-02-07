@@ -1,5 +1,5 @@
-package tully;
-
+/* Board - Stores all data for a 4x4x4 tic tac toe game
+ * and allows its manipulation*/
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -12,6 +12,9 @@ public class Board implements BoardInt {
     Color yWin = Color.blue;
     int timer = 0;
 
+    /* Pre: None
+	 * Post: Creates a 4x4x4 gameboard where every location is
+	 * set to empty ('-')*/
     public Board() {
         for (int sheet = 0; sheet < numSheets(); sheet++) {
             for (int row = 0; row < numRows(); row++) {
@@ -44,6 +47,8 @@ public class Board implements BoardInt {
         }
     }
 
+    /* Pre: Recieves a board
+	 * Post: Constructs a copy of the recieved board*/
     public Board(BoardInt b) {
         for (int sheet = 0; sheet < numSheets(); sheet++) {
             for (int row = 0; row < numRows(); row++) {
@@ -54,14 +59,23 @@ public class Board implements BoardInt {
         }
     }
 
+    /* Pre: None
+	 * Post: Returns an ArrayList of GamePolygons for each location
+	 * on the board*/
     public ArrayList<GamePolygon> getPolys() {
         return polys;
     }
 
+    /* Pre: None
+	 * Post: returns a 3D char array that stores the boards data*/
     public char[][][] getData() {
         return board;
     }
 
+    /* Pre: Receives a location and letter (in the form of 'X' or 'O')
+	 * Post: when the provided location is empty ('-') it places the
+	 * received letter into the location and returns true, otherwise
+	 * it returns false*/
     public boolean setLocation(LocationInt l, char c) {
         if (isEmpty(l)) {
             board[l.getSheet()][l.getRow()][l.getCol()] = c;
@@ -71,18 +85,28 @@ public class Board implements BoardInt {
         }
     }
 
+    /* Pre: None
+	 * Post: returns a 3D char array that stores the boards data*/
     public char[][][] getBoardArray() {
         return board;
     }
 
+    /* Pre: Receives a location and letter (in the form of 'X' or 'O')
+	 * Post: it places the received letter into the location */
     public void setLocationNoCheck(LocationInt l, char c) {
         board[l.getSheet()][l.getRow()][l.getCol()] = c;
     }
 
+    /* Pre: Receives a location
+	 * Post: returns the letter at the provided location */
     public char getLocation(LocationInt l) {
         return board[l.getSheet()][l.getRow()][l.getCol()];
     }
 
+    /* Pre: Receives a player's letter
+	 * Post: returns if the received letter has a win one the board.
+	 * It will also toggle the winning move line from lowercase to uppercase
+	 * each call.*/
     public boolean isWinner(char player) {
         // check rows
         for (int r = 0; r < numRows(); r++) {
@@ -349,8 +373,8 @@ public class Board implements BoardInt {
 
     }
 
-    // Pre:		method is called
-    // Post:	prints the game board to the console screen
+    /* Pre: None
+	 * Post: draws a text representation of the game board */
     public void display() {
         for (int s = numSheets() - 1; s >= 0; s--) {
             for (int r = 0; r < numRows(); r++) {
@@ -368,6 +392,9 @@ public class Board implements BoardInt {
         }
     }
 
+    /* Pre: Receives a location
+	 * Post: returns true if the provided location is empty ('-'),
+	 * otherwise it returns false*/
     public boolean isEmpty(LocationInt l) {
         if (board[l.getSheet()][l.getRow()][l.getCol()] == '-') {
             return true;
@@ -376,34 +403,47 @@ public class Board implements BoardInt {
         }
     }
 
+    /* Pre: None
+	 * Post: returns true there is no winner and all the spaces
+	 * are filled*/
     public boolean isCat() {
         int m = 0;
         for (int c = 0; c < numCols(); c++) {
             for (int r = 0; r < numRows(); r++) {
                 for (int s = 0; s < numSheets(); s++) {
-                    if (board[s][r][c] == '-')
+                    if (board[s][r][c] == '-') {
                         return false;
+                    }
                 }
             }
         }
-        if (isWinner('X') || isWinner('O'))
+        if (isWinner('X') || isWinner('O')) {
             return false;
-        else
+        } else {
             return true;
+        }
     }
 
+    /* Pre: None
+	 * Post: returns the number of sheets on the board*/
     public int numRows() {
         return board[0].length;
     }
 
+    /* Pre: None
+	 * Post: returns the number of columns on the board*/
     public int numCols() {
         return board[0][0].length;
     }
 
+    /* Pre: None
+	 * Post: returns the number of sheets on the board*/
     public int numSheets() {
         return board.length;
     }
 
+    /* Pre: None
+	 * Post: sets all the locations on the board to empty ('-')*/
     public void reset() {
         for (int s = 0; s < numSheets(); s++) {
             for (int r = 0; r < numRows(); r++) {
@@ -414,6 +454,9 @@ public class Board implements BoardInt {
         }
     }
 
+    /* Pre: Recieves a graphics object
+	 * Post: draws a graphical representation of the board to the received
+	 * graphics object */
     public void draw(Graphics g) {
         timer = (timer + 1) % 8;
 
@@ -450,6 +493,10 @@ public class Board implements BoardInt {
         }
     }
 
+    /* Pre: Receives a graphics object and location in the form on (x,y,z)
+	 * and a letter.
+	 * Post: draws a polygon with the letter on the screen 'X' is red,
+	 * 'O' is blue and ('x'/'o') are white */
     public void drawLocation(Graphics g, int x, int y, char letter) {
         g.setColor(Color.gray);
         g.drawLine(x + 8, y, x + 22, y);
@@ -472,6 +519,8 @@ public class Board implements BoardInt {
         g.drawLine(x + 22, y, x + 14, y + 15);
     }
 
+    /* Pre: None
+	 * Post: returns a copy of the game board */
     public Object clone() {
         Board copy = new Board();
         for (int sheet = 0; sheet < numSheets(); sheet++) {

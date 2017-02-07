@@ -1,13 +1,12 @@
 package tully;
 
-
-import pack1.Espresso;
-import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import javax.swing.JPanel;
+import pack1.Espresso;
 
 public class GamePanel extends JPanel implements Runnable, MouseListener {
     // Sleep Timers

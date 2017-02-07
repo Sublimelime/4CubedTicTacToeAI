@@ -1,52 +1,58 @@
 package tully;
 
-public class Location implements LocationInt {
+/* Location - Stores the x,y,z values of a 3D location */
+import java.io.Serializable;
+
+public class Location implements LocationInt, Serializable {
 
     int sheet;
     int row;
     int col;
 
-    // Pre: 	Receives Location values x, y ,z
-    // Post:	Sets x, y, z to the recieved values
+    /* Pre: 	Receives Location values x, y ,z
+	 * Post:	Sets x, y, z to the recieved values */
     public Location(int sheet, int row, int col) {
         this.col = col;
         this.row = row;
         this.sheet = sheet;
     }
 
-    // Pre: 	Receives Location l
-    // Post:	Sets x, y, z to the values of the received location
+    /* Pre: 	Receives Location l
+	 * Post:	Sets x, y, z to the values of the received location */
     public Location(LocationInt l) {
         this.col = l.getCol();
         this.row = l.getRow();
         this.sheet = l.getSheet();
     }
-    // pre:		method is called
-    // post:	returns the x value of the Location
 
+    /* Pre:		None
+	 * Post: 	returns the column (x) of the location */
     public int getCol() {
         return col;
     }
 
-    // pre:		method is called
-    // post:	returns the y value of the Location
+    /* Pre:		None
+	 * Post: 	returns the row (y) of the location */
     public int getRow() {
         return row;
     }
 
-    // pre:		method is called
-    // post:	returns the z value of the Location
+    /* Pre:		None
+	 * Post: 	returns the sheet (z) of the location */
     public int getSheet() {
         return sheet;
     }
 
-    // pre:		method is called
-    // post:	returns the z value of the Location
+    /* Pre:		None
+	 * Post: 	returns a text representation of the location
+	 * in the form of (x,y,x)*/
     public String toString() {
-        String s = "(" + sheet + "," + row + "," + col + ")";
+        String s = "(z=" + sheet + ",y=" + row + ",x=" + col + ")";
         return s;
     }
 
+    /* Pre:		None
+	 * Post: 	returns a copy of the Location*/
     public Object clone() {
         return new Location(sheet, row, col);
     }

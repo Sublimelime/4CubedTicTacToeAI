@@ -129,17 +129,14 @@ public class Espresso implements PlayerInt {
 
         //todo re-evaluate the remaining moves after the previous operation
         //Logic for how to move ----------------------------------------------------
-        //todo after this is done, old method with score should be unnecessary
         //instant wins, stop instant win
         if (selfQuadruples.size() > 0) { //win immediately
             return selfQuadruples.get(0);
         } else if (otherQuadruples.size() > 0) { //block them from winning immediately
             return otherQuadruples.get(0);
+        } else {
+            return bestLocs.get(0);
         }
-
-        //attack code
-        //System.out.println("I moved to..." + loc);
-        return bestLocs.get(0);
     }
 
     /**
