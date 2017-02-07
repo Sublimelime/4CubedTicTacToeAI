@@ -1,14 +1,15 @@
 package pack1;
 
+import tully.*;
+
 import java.util.ArrayList;
 import java.util.Random;
-import tully.*;
 
 /**
  * An AI coded by Hunter Wright and Noah Morton
  *
  * @author Noah Morton/Hunter Wright Date created: Jan 25, 2017 Part of project:
- * TicTacToeAI
+ *         TicTacToeAI
  */
 public class Espresso implements PlayerInt {
 
@@ -112,14 +113,23 @@ public class Espresso implements PlayerInt {
                         if (selfQuadruples.size() > 0) { //todo finish laying out scoring algorithm
                             score += 10000;
                         }
-                        for (int i = 0; i < selfDoubles.size(); i++) { // For loop to go through every index in selfDoubles list
-                            if (!(isAdjacent(selfDoubles.get(i), locCurrent))) { // If locCurrent is not adjacent to the current index
-                                score *= .5; // The score is halved
-                            }
+                        if (selfDoubles.size() > 0) {
+                            score += 5000;
+                            System.out.println(selfDoubles.size());
                         }
+                        for (int i = 0; i < selfDoubles.size(); i++) { // For loop to go through every index in selfDoubles list
+                            if (!bestLocs.contains(selfDoubles.get(i))) {
+                                if (!(isAdjacent(selfDoubles.get(i), locCurrent))) { // If locCurrent is not adjacent to the current index
+                                    System.out.println(selfDoubles.get(i));
+                                    System.out.println();
+                                }
+                                bestLocs.add(new ScoredLocation(selfDoubles.get(i),score));
+                            }
 
-                        bestLocs.add(new ScoredLocation(locCurrent, score)); //always add the location to the list.
+                        }
                         //System.out.println("(" + sheet + "," + row + "," + col + ")  My score here is..." + score);
+
+                        score = 0;
                     }
                 }
             }
