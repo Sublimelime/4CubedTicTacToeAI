@@ -114,20 +114,10 @@ public class Espresso implements PlayerInt {
                             score += 10000;
                         }
                         if (selfDoubles.size() > 0) {
-                            score += 5000;
-                            System.out.println(selfDoubles.size());
+                            score += (5000)*selfDoubles.size();
                         }
-                        for (int i = 0; i < selfDoubles.size(); i++) { // For loop to go through every index in selfDoubles list
-                            if (!bestLocs.contains(selfDoubles.get(i))) {
-                                if (!(isAdjacent(selfDoubles.get(i), locCurrent))) { // If locCurrent is not adjacent to the current index
-                                    System.out.println(selfDoubles.get(i));
-                                    System.out.println();
-                                }
-                                bestLocs.add(new ScoredLocation(selfDoubles.get(i),score));
-                            }
 
-                        }
-                        //System.out.println("(" + sheet + "," + row + "," + col + ")  My score here is..." + score);
+                        bestLocs.add(new ScoredLocation(locCurrent, score));
 
                         score = 0;
                     }
