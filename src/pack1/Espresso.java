@@ -151,13 +151,9 @@ public class Espresso implements PlayerInt {
         int oneCol = one.getCol(), twoCol = two.getCol(), oneRow = one.getRow(), twoRow = two.getRow(),
                 oneSheet = one.getSheet(), twoSheet = two.getSheet();
 
-        //This is the worst if I have ever written. Checks for if exactly 2/3 vars are within one. Checks adjacency
-        if (2 == ((Math.abs((double) oneCol - (double) twoCol) == 1) ? 1 : 0)
+        return 2 == ((Math.abs((double) oneCol - (double) twoCol) == 1) ? 1 : 0)
                 + ((Math.abs((double) oneRow - (double) twoRow) == 1) ? 1 : 0)
-                + ((Math.abs((double) oneSheet - (double) twoSheet) == 1) ? 1 : 0)) {
-            return true;
-        }
-        return false;
+                + ((Math.abs((double) oneSheet - (double) twoSheet) == 1) ? 1 : 0);
     }
 
     /**
