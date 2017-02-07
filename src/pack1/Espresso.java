@@ -37,7 +37,7 @@ public class Espresso implements PlayerInt {
      */
     public Espresso(char letter) {
         this.letter = letter;
-        this.name = "Recursive Python";
+        this.name = "Espresso - The Coffee AI";
     }
 
     /**

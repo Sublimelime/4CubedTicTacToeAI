@@ -1,3 +1,5 @@
+package tully;
+
 /* Board - Stores all data for a 4x4x4 tic tac toe game
  * and allows its manipulation*/
 import java.awt.*;
