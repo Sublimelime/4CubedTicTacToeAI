@@ -56,7 +56,10 @@ public class ScoredLocation extends Location implements LocationInt, Comparable<
      */
     @Override
     public int compareTo(ScoredLocation o) {
-        return (scoreOfLocation < o.getScoreOfLocation()) ? -1 : (scoreOfLocation > o.getScoreOfLocation()) ? 1 : 0;
+        //if(o.getScoreOfLocation()<scoreOfLocation) //todo rewrite
+        System.err.println("Write the compare!");
+        System.exit(-1);
+        return 0;
     }
 
     /**
