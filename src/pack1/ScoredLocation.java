@@ -86,4 +86,10 @@ public class ScoredLocation extends Location implements LocationInt, Comparable<
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return '{' + "Loc=" + getLocation() + "Score=" + scoreOfLocation + '}';
+    }
+
 }
