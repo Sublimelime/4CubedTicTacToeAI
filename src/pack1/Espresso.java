@@ -15,6 +15,7 @@ public class Espresso implements PlayerInt {
 
     private final char letter;
     private final String name;
+    Location lastMove = null;
 
     ArrayList<ScoredLocation> bestLocs;
 
@@ -110,12 +111,11 @@ public class Espresso implements PlayerInt {
                             selfZeros.add(locCurrent);
                         }
 
-                        if (selfQuadruples.size() > 0) { //todo finish laying out scoring algorithm
-                            score += 10000;
+                        if (ls.getSelfDoubles() > 0) { //todo finish laying out scoring algorithm
+                            score += 5000;
                         }
-                        if (selfDoubles.size() > 0) {
-                            score += (5000)*selfDoubles.size();
-                        }
+                        if(lastMove != null && isAdjacent(locCurrent,lastMove))
+                            score *= 1.5;
 
                         bestLocs.add(new ScoredLocation(locCurrent, score));
 
@@ -130,10 +130,13 @@ public class Espresso implements PlayerInt {
         //Logic for how to move ----------------------------------------------------
         //instant wins, stop instant win
         if (selfQuadruples.size() > 0) { //win immediately
+            lastMove = selfQuadruples.get(0);
             return selfQuadruples.get(0);
         } else if (otherQuadruples.size() > 0) { //block them from winning immediately
+            lastMove = otherQuadruples.get(0);
             return otherQuadruples.get(0);
         } else {
+            lastMove = bestLocs.get(0);
             return bestLocs.get(0);
         }
     }
