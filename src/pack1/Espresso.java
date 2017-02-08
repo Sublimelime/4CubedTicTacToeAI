@@ -13,7 +13,6 @@ public class Espresso implements PlayerInt {
 
     private final char letter;
     private final String name;
-    Location lastMove = null;
 
     ArrayList<ScoredLocation> bestLocs;
 
@@ -108,11 +107,13 @@ public class Espresso implements PlayerInt {
                             selfZeros.add(locCurrent);
                         }
 
+                        if (ls.getSelfQuadruples() > 0) { //todo finish laying out scoring algorithm
+                            score += 100000;
+                        }
                         if (ls.getSelfDoubles() > 0) { //todo finish laying out scoring algorithm
                             score += 5000;
                         }
-                        if(lastMove != null && isAdjacent(locCurrent,lastMove))
-                            score *= 1.5;
+                        System.out.println(locCurrent+" "+score);
 
                         bestLocs.add(new ScoredLocation(locCurrent, score));
 
@@ -121,19 +122,22 @@ public class Espresso implements PlayerInt {
                 }
             }
         }
-        bestLocs.sort(null); //sort the list of locations.
+        int bestScore = 0;
+        for(int i = 0;i<bestLocs.size();i++)
+        {
+            if(bestLocs.get(i).getScoreOfLocation() > bestScore)
+                bestScore = bestLocs.get(i).getScoreOfLocation();
+        }
+        System.out.println(bestScore + " " + bestLocs.get(0).getScoreOfLocation());
 
         //todo re-evaluate the remaining moves after the previous operation
         //Logic for how to move ----------------------------------------------------
         //instant wins, stop instant win
         if (selfQuadruples.size() > 0) { //win immediately
-            lastMove = selfQuadruples.get(0);
             return selfQuadruples.get(0);
         } else if (otherQuadruples.size() > 0) { //block them from winning immediately
-            lastMove = otherQuadruples.get(0);
             return otherQuadruples.get(0);
         } else {
-            lastMove = bestLocs.get(0);
             return bestLocs.get(0).getLocation(); //pick the best of the bestLocs
         }
     }
