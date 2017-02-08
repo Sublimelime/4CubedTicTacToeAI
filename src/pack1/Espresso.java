@@ -144,13 +144,20 @@ public class Espresso implements PlayerInt {
      */
     private boolean isAdjacent(LocationInt one, LocationInt two) {
         //Logic is only two may be true, not one or three may be true. Tests for adjacency
-        //if (2 == ((one.getCol() == two.getCol()) ? 1 : 0) + ((one.getRow() == two.getRow()) ? 1 : 0) + ((one.getSheet() == two.getSheet()) ? 1 : 0)) {
         int oneCol = one.getCol(), twoCol = two.getCol(), oneRow = one.getRow(), twoRow = two.getRow(),
                 oneSheet = one.getSheet(), twoSheet = two.getSheet();
 
-        return 2 == ((Math.abs((double) oneCol - (double) twoCol) == 1) ? 1 : 0)
-                + ((Math.abs((double) oneRow - (double) twoRow) == 1) ? 1 : 0)
-                + ((Math.abs((double) oneSheet - (double) twoSheet) == 1) ? 1 : 0);
+        int onlyTwo = 0; //this value must not be more than two.
+        if (oneCol == twoCol) {
+            onlyTwo++;
+        }
+        if (oneRow == twoRow) {
+            onlyTwo++;
+        }
+        if (oneSheet == twoSheet) {
+            onlyTwo++;
+        }
+        return (onlyTwo == 2); //if one or three, not adjacent
     }
 
     /**
