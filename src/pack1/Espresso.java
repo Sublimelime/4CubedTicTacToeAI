@@ -1,7 +1,6 @@
 package pack1;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 import tully.*;
 
 /**
@@ -14,6 +13,7 @@ public class Espresso implements PlayerInt {
 
     private final char letter;
     private final String name;
+    Random rand = new Random();
 
     ArrayList<ScoredLocation> bestLocs;
 
@@ -138,10 +138,11 @@ public class Espresso implements PlayerInt {
         } else if (otherQuadruples.size() > 0) { //block them from winning immediately
             oldMoves.add(otherQuadruples.get(0));
             return otherQuadruples.get(0);
-        } /*else if (selfSingles.size() >= 63) { // If first move, then choose random location // todo make first move around the edges or corners
+        } else if (selfSingles.size() >= 63) { // If first move, then choose random location // todo make first move around the edges or corners
             return selfSingles.get(rand.nextInt(selfSingles.size()));
-        }*/ else {
+        } else {
             oldMoves.add(bestLocs.get(0));
+
             return bestLocs.get(0).getLocation(); //pick the best of the bestLocs
         }
     }
@@ -159,13 +160,13 @@ public class Espresso implements PlayerInt {
                 oneSheet = one.getSheet(), twoSheet = two.getSheet();
 
         int onlyThree = 0; //this value must equal three.
-        if (Math.abs((double) oneCol - (double) twoCol) <= 1) {
+        if (Math.abs(oneCol - twoCol) <= 1) {
             onlyThree++;
         }
-        if (Math.abs((double) oneRow - (double) twoRow) <= 1) {
+        if (Math.abs(oneRow - twoRow) <= 1) {
             onlyThree++;
         }
-        if (Math.abs((double) oneSheet - (double) twoSheet) <= 1) {
+        if (Math.abs(oneSheet - twoSheet) <= 1) {
             onlyThree++;
         }
         return (onlyThree == 3); //if three, then adjacent
