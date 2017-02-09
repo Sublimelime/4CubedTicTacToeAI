@@ -6,13 +6,10 @@ import tully.LocationInt;
 /**
  * Description
  *
- * @author Noah Morton
- *
- * Date created: Feb 3, 2017
- *
- * Part of project: TicTacToeAI
+ * @author Noah Morton Date created: Feb 3, 2017 Part of project: TicTacToeAI
  */
-public class ScoredLocation extends Location implements LocationInt, Comparable<ScoredLocation> {
+public class ScoredLocation extends Location
+        implements LocationInt, Comparable<ScoredLocation> {
 
     private int scoreOfLocation;
 
@@ -56,10 +53,15 @@ public class ScoredLocation extends Location implements LocationInt, Comparable<
      */
     @Override
     public int compareTo(ScoredLocation o) {
-        //if(o.getScoreOfLocation()<scoreOfLocation) //todo rewrite
-        System.err.println("Write the compare!");
-        System.exit(-1);
-        return 0;
+        if (o.getScoreOfLocation() < scoreOfLocation) {
+            return -1;
+        } else if (o.getScoreOfLocation() == scoreOfLocation) {
+            return 0;
+        } else if (o.getScoreOfLocation() > scoreOfLocation) {
+            return 1;
+        }
+
+        return 2;
     }
 
     /**

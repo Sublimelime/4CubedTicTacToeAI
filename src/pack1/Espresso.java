@@ -1,13 +1,14 @@
 package pack1;
 
-import java.util.ArrayList;
+import java.util.*;
+
 import tully.*;
 
 /**
  * An AI coded by Hunter Wright and Noah Morton
  *
  * @author Noah Morton/Hunter Wright Date created: Jan 25, 2017 Part of project:
- * TicTacToeAI
+ *         TicTacToeAI
  */
 public class Espresso implements PlayerInt {
 
@@ -113,7 +114,7 @@ public class Espresso implements PlayerInt {
                         if (ls.getSelfDoubles() > 0) { //todo finish laying out scoring algorithm
                             score += 5000;
                         }
-                        System.out.println(locCurrent+" "+score);
+                        System.out.println(locCurrent + " " + score);
 
                         bestLocs.add(new ScoredLocation(locCurrent, score));
 
@@ -122,13 +123,7 @@ public class Espresso implements PlayerInt {
                 }
             }
         }
-        int bestScore = 0;
-        for(int i = 0;i<bestLocs.size();i++)
-        {
-            if(bestLocs.get(i).getScoreOfLocation() > bestScore)
-                bestScore = bestLocs.get(i).getScoreOfLocation();
-        }
-        System.out.println(bestScore + " " + bestLocs.get(0).getScoreOfLocation());
+        Collections.sort(bestLocs);
 
         //todo re-evaluate the remaining moves after the previous operation
         //Logic for how to move ----------------------------------------------------
