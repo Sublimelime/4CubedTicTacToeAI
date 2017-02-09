@@ -30,6 +30,8 @@ public class Espresso implements PlayerInt {
     ArrayList<Location> otherTriples;
     ArrayList<Location> otherQuadruples;
 
+    ArrayList<Location> oldMoves = new ArrayList<>();
+
     /**
      * Creates a new instance of the RecursivePython AI.
      *
@@ -111,13 +113,13 @@ public class Espresso implements PlayerInt {
 
                         if (ls.getSelfQuadruples() > 0) { //todo finish laying out scoring algorithm
                             score += 100000;
-                        }
-                        if (selfDoubles.size() > 0) {
-                            if (ls.getSelfDoubles() > 0 && isAdjacent(locCurrent, selfDoubles.get(0))) { //todo finish laying out scoring algorithm
-                                score += (5000 * ls.getSelfDoubles()); // Multiplies score based on how many doubles are in a location
-                            }
                         } else if (ls.getSelfTriples() > 1) {
                             score += 100000;
+                        }
+                        if (oldMoves.size() > 0) {
+                            if (ls.getSelfDoubles() > 0 && isAdjacent(locCurrent, oldMoves.get(oldMoves.size() - 1))) {
+                                score += (5000 * ls.getSelfDoubles()); // Multiplies score based on how many doubles are in a location
+                            }
                         }
                         //System.out.println(locCurrent + " " + score);
 
@@ -139,10 +141,12 @@ public class Espresso implements PlayerInt {
         if (selfQuadruples.size() > 0) { //win immediately
             return selfQuadruples.get(0);
         } else if (otherQuadruples.size() > 0) { //block them from winning immediately
+            oldMoves.add(otherQuadruples.get(0));
             return otherQuadruples.get(0);
-        } else if (selfSingles.size() >= 63) {
+        } /*else if (selfSingles.size() >= 63) { // If first move, then choose random location // todo make first move around the edges or corners
             return selfSingles.get(rand.nextInt(selfSingles.size()));
-        } else {
+        }*/ else {
+            oldMoves.add(bestLocs.get(0).getLocation());
             return bestLocs.get(0).getLocation(); //pick the best of the bestLocs
         }
     }
