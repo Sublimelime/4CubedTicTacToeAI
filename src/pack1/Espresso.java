@@ -18,19 +18,19 @@ public class Espresso implements PlayerInt {
     ArrayList<ScoredLocation> bestLocs;
 
     //location arraylists
-    ArrayList<Location> selfZeros;
-    ArrayList<Location> selfSingles;
-    ArrayList<Location> selfDoubles;
-    ArrayList<Location> selfTriples;
-    ArrayList<Location> selfQuadruples;
+    ArrayList<ScoredLocation> selfZeros;
+    ArrayList<ScoredLocation> selfSingles;
+    ArrayList<ScoredLocation> selfDoubles;
+    ArrayList<ScoredLocation> selfTriples;
+    ArrayList<ScoredLocation> selfQuadruples;
 
-    ArrayList<Location> otherZeros;
-    ArrayList<Location> otherSingles;
-    ArrayList<Location> otherDoubles;
-    ArrayList<Location> otherTriples;
-    ArrayList<Location> otherQuadruples;
+    ArrayList<ScoredLocation> otherZeros;
+    ArrayList<ScoredLocation> otherSingles;
+    ArrayList<ScoredLocation> otherDoubles;
+    ArrayList<ScoredLocation> otherTriples;
+    ArrayList<ScoredLocation> otherQuadruples;
 
-    ArrayList<Location> oldMoves = new ArrayList<>();
+    ArrayList<ScoredLocation> oldMoves = new ArrayList<>();
 
     /**
      * Creates a new instance of the RecursivePython AI.
@@ -82,7 +82,7 @@ public class Espresso implements PlayerInt {
             for (int row = 0; row < board.numRows(); row++) {
                 for (int col = 0; col < board.numCols(); col++) {
                     if (board.isEmpty(new Location(sheet, row, col))) { //If this spot is valid, ie not taken
-                        Location locCurrent = new Location(sheet, row, col);
+                        ScoredLocation locCurrent = new ScoredLocation(new Location(sheet, row, col), -1);
 
                         ls = new LocationScore(board, locCurrent, letter); //gets the location score of the current spot
 
@@ -120,7 +120,6 @@ public class Espresso implements PlayerInt {
                                 score += (5000 * ls.getSelfDoubles()); // Multiplies score based on how many doubles are in a location
                             }
                         }
-                        //System.out.println(locCurrent + " " + score);
 
                         bestLocs.add(new ScoredLocation(locCurrent, score)); // Adds score and location to ScoredLocation
 
@@ -129,9 +128,7 @@ public class Espresso implements PlayerInt {
                 }
             }
         }
-        //System.out.println("Before sort ..." + bestLocs);
         Collections.sort(bestLocs); // Sorts bestLoc in descending order (biggest score to smallest score)
-        //System.out.println("After sort ... " + bestLocs + "\n");
 
         //todo re-evaluate the remaining moves after the previous operation
         //Logic for how to move ----------------------------------------------------
@@ -144,7 +141,7 @@ public class Espresso implements PlayerInt {
         } /*else if (selfSingles.size() >= 63) { // If first move, then choose random location // todo make first move around the edges or corners
             return selfSingles.get(rand.nextInt(selfSingles.size()));
         }*/ else {
-            oldMoves.add(bestLocs.get(0).getLocation());
+            oldMoves.add(bestLocs.get(0));
             return bestLocs.get(0).getLocation(); //pick the best of the bestLocs
         }
     }
