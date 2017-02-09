@@ -111,19 +111,25 @@ public class Espresso implements PlayerInt {
                         if (ls.getSelfQuadruples() > 0) { //todo finish laying out scoring algorithm
                             score += 100000;
                         }
-                        if (ls.getSelfDoubles() > 0) { //todo finish laying out scoring algorithm
-                            score += 5000;
+                        if (selfDoubles.size() > 0) {
+                            if (ls.getSelfDoubles() > 0 && isAdjacent(locCurrent, selfDoubles.get(0))) { //todo finish laying out scoring algorithm
+                                score += (5000 * ls.getSelfDoubles()); // Multiplies score based on how many doubles are in a location
+                            }
+                        } else if (ls.getSelfTriples() > 1) {
+                            score += 100000;
                         }
-                        System.out.println(locCurrent + " " + score);
+                        //System.out.println(locCurrent + " " + score);
 
-                        bestLocs.add(new ScoredLocation(locCurrent, score));
+                        bestLocs.add(new ScoredLocation(locCurrent, score)); // Adds score and location to ScoredLocation
 
-                        score = 0;
+                        score = 0; // Sets score back to 0 to make sure every location's score starts at 0
                     }
                 }
             }
         }
-        Collections.sort(bestLocs);
+        //System.out.println("Before sort ..." + bestLocs);
+        Collections.sort(bestLocs); // Sorts bestLoc in descending order (biggest score to smallest score)
+        //System.out.println("After sort ... " + bestLocs + "\n");
 
         //todo re-evaluate the remaining moves after the previous operation
         //Logic for how to move ----------------------------------------------------
@@ -149,17 +155,17 @@ public class Espresso implements PlayerInt {
         int oneCol = one.getCol(), twoCol = two.getCol(), oneRow = one.getRow(), twoRow = two.getRow(),
                 oneSheet = one.getSheet(), twoSheet = two.getSheet();
 
-        int onlyTwo = 0; //this value must not be more than two.
-        if (oneCol == twoCol) {
-            onlyTwo++;
+        int onlyThree = 0; //this value must equal three.
+        if (Math.abs((double) oneCol - (double) twoCol) <= 1) {
+            onlyThree++;
         }
-        if (oneRow == twoRow) {
-            onlyTwo++;
+        if (Math.abs((double) oneRow - (double) twoRow) <= 1) {
+            onlyThree++;
         }
-        if (oneSheet == twoSheet) {
-            onlyTwo++;
+        if (Math.abs((double) oneSheet - (double) twoSheet) <= 1) {
+            onlyThree++;
         }
-        return (onlyTwo == 2); //if one or three, not adjacent
+        return (onlyThree == 3); //if three, then adjacent
     }
 
     /**
