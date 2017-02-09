@@ -59,9 +59,9 @@ public class ScoredLocation extends Location
             return 0;
         } else if (o.getScoreOfLocation() > scoreOfLocation) {
             return 1;
+        } else {
+            throw new UnsupportedOperationException("Cannot compare values.");
         }
-
-        return 2;
     }
 
     /**

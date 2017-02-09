@@ -1,14 +1,14 @@
 package pack1;
 
-import java.util.*;
-
+import java.util.ArrayList;
+import java.util.Collections;
 import tully.*;
 
 /**
  * An AI coded by Hunter Wright and Noah Morton
  *
  * @author Noah Morton/Hunter Wright Date created: Jan 25, 2017 Part of project:
- *         TicTacToeAI
+ * TicTacToeAI
  */
 public class Espresso implements PlayerInt {
 
@@ -62,7 +62,6 @@ public class Espresso implements PlayerInt {
     public LocationInt getMove(BoardInt board) {
         int score = 0;
         LocationScore ls = null;
-        Random rand = new Random();
 
         //clear and recreate all the arraylists
         selfZeros = new ArrayList<>();
@@ -137,7 +136,6 @@ public class Espresso implements PlayerInt {
         //todo re-evaluate the remaining moves after the previous operation
         //Logic for how to move ----------------------------------------------------
         //instant wins, stop instant win
-
         if (selfQuadruples.size() > 0) { //win immediately
             return selfQuadruples.get(0);
         } else if (otherQuadruples.size() > 0) { //block them from winning immediately
