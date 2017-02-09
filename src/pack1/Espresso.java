@@ -60,6 +60,7 @@ public class Espresso implements PlayerInt {
     public LocationInt getMove(BoardInt board) {
         int score = 0;
         LocationScore ls = null;
+        Random rand = new Random();
 
         //clear and recreate all the arraylists
         selfZeros = new ArrayList<>();
@@ -134,10 +135,13 @@ public class Espresso implements PlayerInt {
         //todo re-evaluate the remaining moves after the previous operation
         //Logic for how to move ----------------------------------------------------
         //instant wins, stop instant win
+
         if (selfQuadruples.size() > 0) { //win immediately
             return selfQuadruples.get(0);
         } else if (otherQuadruples.size() > 0) { //block them from winning immediately
             return otherQuadruples.get(0);
+        } else if (selfSingles.size() >= 63) {
+            return selfSingles.get(rand.nextInt(selfSingles.size()));
         } else {
             return bestLocs.get(0).getLocation(); //pick the best of the bestLocs
         }

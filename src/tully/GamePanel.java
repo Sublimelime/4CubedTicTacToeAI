@@ -12,7 +12,7 @@ public class GamePanel extends JPanel implements Runnable, MouseListener {
     // Sleep Timers
 
     public static int playerInfoSleepTime = 0;
-    public static int moveSleepTime = 500;
+    public static int moveSleepTime = 2500;
     public static int endSleepTime = 4000;
 
     // number of games each player will get to play as Red
