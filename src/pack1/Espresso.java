@@ -1,13 +1,14 @@
 package pack1;
 
-import java.util.*;
 import tully.*;
+
+import java.util.*;
 
 /**
  * An AI coded by Hunter Wright and Noah Morton
  *
  * @author Noah Morton/Hunter Wright Date created: Jan 25, 2017 Part of project:
- * TicTacToeAI
+ *         TicTacToeAI
  */
 public class Espresso implements PlayerInt {
 
@@ -31,6 +32,7 @@ public class Espresso implements PlayerInt {
     ArrayList<ScoredLocation> otherQuadruples;
 
     ArrayList<ScoredLocation> oldMoves = new ArrayList<>();
+    ArrayList<ScoredLocation> adjMoves = new ArrayList<>();
 
     /**
      * Creates a new instance of the RecursivePython AI.
@@ -136,7 +138,7 @@ public class Espresso implements PlayerInt {
         if (selfQuadruples.size() > 0) { //win immediately
             return selfQuadruples.get(0);
         } else if (otherQuadruples.size() > 0) { //block them from winning immediately
-            oldMoves.add(otherQuadruples.get(0));
+            oldMoves.add(0,otherQuadruples.get(0));
             return otherQuadruples.get(0);
         } else if (selfSingles.size() >= 63) { // If first move, then choose random location // todo make first move around the edges or corners
             return selfSingles.get(rand.nextInt(selfSingles.size()));
