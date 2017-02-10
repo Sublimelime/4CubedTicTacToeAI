@@ -63,13 +63,6 @@ public class Espresso implements PlayerInt {
         int score = 0;
         LocationScore ls;
 
-        if (selfQuadruples.size() > 0) { //win immediately
-            return selfQuadruples.get(0).getLocation();
-        } else if (otherQuadruples.size() > 0) { //block them from winning immediately
-            oldMoves.add(otherQuadruples.get(0));
-            return otherQuadruples.get(0).getLocation();
-        }
-
         //clear and recreate all the arraylists
         selfZeros = new ArrayList<>();
         selfSingles = new ArrayList<>();
@@ -84,6 +77,13 @@ public class Espresso implements PlayerInt {
         otherQuadruples = new ArrayList<>();
 
         bestLocs = new ArrayList<>();
+
+        if (selfQuadruples.size() > 0) { //win immediately
+            return selfQuadruples.get(0).getLocation();
+        } else if (otherQuadruples.size() > 0) { //block them from winning immediately
+            oldMoves.add(otherQuadruples.get(0));
+            return otherQuadruples.get(0).getLocation();
+        }
 
         for (int sheet = 0; sheet < board.numSheets(); sheet++) { //Go through all the spots on the board
             for (int row = 0; row < board.numRows(); row++) {
