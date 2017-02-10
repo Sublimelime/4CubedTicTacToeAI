@@ -61,7 +61,7 @@ public class Espresso implements PlayerInt {
     @Override
     public LocationInt getMove(BoardInt board) {
         int score = 0;
-        LocationScore ls = null;
+        LocationScore ls;
 
         //clear and recreate all the arraylists
         selfZeros = new ArrayList<>();
@@ -134,10 +134,10 @@ public class Espresso implements PlayerInt {
         //Logic for how to move ----------------------------------------------------
         //instant wins, stop instant win
         if (selfQuadruples.size() > 0) { //win immediately
-            return selfQuadruples.get(0);
+            return selfQuadruples.get(0).getLocation();
         } else if (otherQuadruples.size() > 0) { //block them from winning immediately
             oldMoves.add(otherQuadruples.get(0));
-            return otherQuadruples.get(0);
+            return otherQuadruples.get(0).getLocation();
         } else if (selfSingles.size() >= 63) { // If first move, then choose random location // todo make first move around the edges or corners
             return selfSingles.get(rand.nextInt(selfSingles.size()));
         } else {
