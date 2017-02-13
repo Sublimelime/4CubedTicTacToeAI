@@ -1,38 +1,34 @@
 package pack1;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import tully.*;
-
-import java.util.*;
 
 /**
  * An AI coded by Hunter Wright and Noah Morton
  *
  * @author Noah Morton/Hunter Wright Date created: Jan 25, 2017 Part of project:
- *         TicTacToeAI
+ * TicTacToeAI
  */
 public class Espresso implements PlayerInt {
 
     private final char letter;
     private final String name;
-    Random rand = new Random();
 
     ArrayList<ScoredLocation> bestLocs;
 
     //location arraylists
-    ArrayList<ScoredLocation> selfZeros;
-    ArrayList<ScoredLocation> selfSingles;
-    ArrayList<ScoredLocation> selfDoubles;
-    ArrayList<ScoredLocation> selfTriples;
-    ArrayList<ScoredLocation> selfQuadruples;
+    ArrayList<Location> selfZeros;
+    ArrayList<Location> selfSingles;
+    ArrayList<Location> selfDoubles;
+    ArrayList<Location> selfTriples;
+    ArrayList<Location> selfQuadruples;
 
-    ArrayList<ScoredLocation> otherZeros;
-    ArrayList<ScoredLocation> otherSingles;
-    ArrayList<ScoredLocation> otherDoubles;
-    ArrayList<ScoredLocation> otherTriples;
-    ArrayList<ScoredLocation> otherQuadruples;
-
-    ArrayList<ScoredLocation> oldMoves = new ArrayList<>();
-    ArrayList<ScoredLocation> adjMoves = new ArrayList<>();
+    ArrayList<Location> otherZeros;
+    ArrayList<Location> otherSingles;
+    ArrayList<Location> otherDoubles;
+    ArrayList<Location> otherTriples;
+    ArrayList<Location> otherQuadruples;
 
     /**
      * Creates a new instance of the RecursivePython AI.
@@ -63,7 +59,7 @@ public class Espresso implements PlayerInt {
     @Override
     public LocationInt getMove(BoardInt board) {
         int score = 0;
-        LocationScore ls;
+        LocationScore ls = null;
 
         //clear and recreate all the arraylists
         selfZeros = new ArrayList<>();
@@ -80,18 +76,11 @@ public class Espresso implements PlayerInt {
 
         bestLocs = new ArrayList<>();
 
-        if (selfQuadruples.size() > 0) { //win immediately
-            return selfQuadruples.get(0).getLocation();
-        } else if (otherQuadruples.size() > 0) { //block them from winning immediately
-            oldMoves.add(otherQuadruples.get(0));
-            return otherQuadruples.get(0).getLocation();
-        }
-
         for (int sheet = 0; sheet < board.numSheets(); sheet++) { //Go through all the spots on the board
             for (int row = 0; row < board.numRows(); row++) {
                 for (int col = 0; col < board.numCols(); col++) {
                     if (board.isEmpty(new Location(sheet, row, col))) { //If this spot is valid, ie not taken
-                        ScoredLocation locCurrent = new ScoredLocation(new Location(sheet, row, col), -1);
+                        Location locCurrent = new Location(sheet, row, col);
 
                         ls = new LocationScore(board, locCurrent, letter); //gets the location score of the current spot
 
@@ -121,14 +110,15 @@ public class Espresso implements PlayerInt {
 
                         if (ls.getSelfQuadruples() > 0) { //todo finish laying out scoring algorithm
                             score += 100000;
+                        }
+                        if (selfDoubles.size() > 0) {
+                            if (ls.getSelfDoubles() > 0 && isAdjacent(locCurrent, selfDoubles.get(0))) { //todo finish laying out scoring algorithm
+                                score += (5000 * ls.getSelfDoubles()); // Multiplies score based on how many doubles are in a location
+                            }
                         } else if (ls.getSelfTriples() > 1) {
                             score += 100000;
                         }
-                        if (oldMoves.size() > 0) {
-                            if (ls.getSelfDoubles() > 0 && isAdjacent(locCurrent, oldMoves.get(oldMoves.size() - 1))) {
-                                score += (5000 * ls.getSelfDoubles()); // Multiplies score based on how many doubles are in a location
-                            }
-                        }
+                        //System.out.println(locCurrent + " " + score);
 
                         bestLocs.add(new ScoredLocation(locCurrent, score)); // Adds score and location to ScoredLocation
 
@@ -137,7 +127,9 @@ public class Espresso implements PlayerInt {
                 }
             }
         }
+        //System.out.println("Before sort ..." + bestLocs);
         Collections.sort(bestLocs); // Sorts bestLoc in descending order (biggest score to smallest score)
+        //System.out.println("After sort ... " + bestLocs + "\n");
 
         //todo re-evaluate the remaining moves after the previous operation
         //Logic for how to move ----------------------------------------------------
@@ -145,15 +137,10 @@ public class Espresso implements PlayerInt {
         if (selfQuadruples.size() > 0) { //win immediately
             return selfQuadruples.get(0);
         } else if (otherQuadruples.size() > 0) { //block them from winning immediately
-            oldMoves.add(0,otherQuadruples.get(0));
             return otherQuadruples.get(0);
-        } else if (selfSingles.size() >= 63) { // If first move, then choose random location // todo make first move around the edges or corners
-            return selfSingles.get(rand.nextInt(selfSingles.size()));
         } else {
-            oldMoves.add(bestLocs.get(0));
-
             return bestLocs.get(0).getLocation(); //pick the best of the bestLocs
-        } // Lets Revert
+        }
     }
 
     /**
@@ -169,13 +156,13 @@ public class Espresso implements PlayerInt {
                 oneSheet = one.getSheet(), twoSheet = two.getSheet();
 
         int onlyThree = 0; //this value must equal three.
-        if (Math.abs(oneCol - twoCol) <= 1) {
+        if (Math.abs((double) oneCol - (double) twoCol) <= 1) {
             onlyThree++;
         }
-        if (Math.abs(oneRow - twoRow) <= 1) {
+        if (Math.abs((double) oneRow - (double) twoRow) <= 1) {
             onlyThree++;
         }
-        if (Math.abs(oneSheet - twoSheet) <= 1) {
+        if (Math.abs((double) oneSheet - (double) twoSheet) <= 1) {
             onlyThree++;
         }
         return (onlyThree == 3); //if three, then adjacent
