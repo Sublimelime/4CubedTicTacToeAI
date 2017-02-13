@@ -153,7 +153,7 @@ public class Espresso implements PlayerInt {
             oldMoves.add(bestLocs.get(0));
 
             return bestLocs.get(0).getLocation(); //pick the best of the bestLocs
-        }
+        } // Lets Revert
     }
 
     /**
