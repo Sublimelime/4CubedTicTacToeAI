@@ -1,21 +1,26 @@
 package pack1;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
+
 import tully.*;
 
 /**
  * An AI coded by Hunter Wright and Noah Morton
  *
  * @author Noah Morton/Hunter Wright Date created: Jan 25, 2017 Part of project:
- * TicTacToeAI
+ *         TicTacToeAI
  */
 public class Espresso implements PlayerInt {
 
     private final char letter;
     private final String name;
 
+    private Board board;
+    private Random random = new Random();
+
     ArrayList<ScoredLocation> bestLocs;
+
+    ArrayList<Location> lastMove = new ArrayList<>();
 
     //location arraylists
     ArrayList<Location> selfZeros;
@@ -101,22 +106,125 @@ public class Espresso implements PlayerInt {
                         } else if (ls.getSelfTriples() > 0) {
                             selfTriples.add(locCurrent);
                         } else if (ls.getSelfDoubles() > 0) {
-                            selfDoubles.add(locCurrent);
+                            selfDoubles.add(0, locCurrent);
                         } else if (ls.getSelfSingles() > 0) {
                             selfSingles.add(locCurrent);
                         } else {
                             selfZeros.add(locCurrent);
                         }
 
-                        if (ls.getSelfQuadruples() > 0) { //todo finish laying out scoring algorithm
-                            score += 100000;
-                        }
-                        if (selfDoubles.size() > 0) {
-                            if (ls.getSelfDoubles() > 0 && isAdjacent(locCurrent, selfDoubles.get(0))) { //todo finish laying out scoring algorithm
+
+                    }
+                }
+            }
+        }
+
+        //todo re-evaluate the remaining moves after the previous operation
+        //Logic for how to move ----------------------------------------------------
+        //instant wins, stop instant win
+        if (selfQuadruples.size() > 0) { //win immediately
+            lastMove.add(0, selfQuadruples.get(0));
+            return selfQuadruples.get(0);
+        } else if (otherQuadruples.size() > 0) { //block them from winning immediately
+            lastMove.add(0, otherQuadruples.get(0));
+            return otherQuadruples.get(0);
+        } else if (otherTriples.size() > 0) { //block them from winning immediately
+            lastMove.add(0, otherTriples.get(0));
+            return otherTriples.get(0);
+        }
+
+        for (int sheet = 0; sheet < board.numSheets(); sheet++) { //Go through all the spots on the board
+            for (int row = 0; row < board.numRows(); row++) {
+                for (int col = 0; col < board.numCols(); col++) {
+                    if (board.isEmpty(new Location(sheet, row, col))) { //If this spot is valid, ie not taken
+                        Location locCurrent = new Location(sheet, row, col);
+
+                        ls = new LocationScore(board, locCurrent, letter); //gets the location score of the current spot
+
+                        // todo re-evaluate the remaining moves after the previous operation
+                        //Logic for how to move ----------------------------------------------------
+
+                        if (ls.getSelfTriples() > 1) {  // DOUBLE WIN STRATEGY
+                            return locCurrent;
+                        } else if (ls.getSelfTriples() == 1) {
+                            boolean sheetEmpty = true, rowEmpty = true, colEmpty = true;
+                            ArrayList<Location> sEmpty = new ArrayList<>();
+                            ArrayList<Location> rEmpty = new ArrayList<>();
+                            ArrayList<Location> cEmpty = new ArrayList<>();
+                            for (int i = 0; i < 4; i++) {  // COLUMN
+                                Location l = new Location(locCurrent.getSheet(), locCurrent.getRow(), i);
+                                if (i != locCurrent.getCol()) {
+                                    if (board.getLocation(l) != getLetter()) {
+                                        if (!(board.isEmpty(l)) && !(new LocationScore(board, l, letter).getSelfTriples() > 0)) {
+                                            colEmpty = false;
+                                            cEmpty.clear();
+                                        } else if (colEmpty) {
+                                            cEmpty.add(new Location(locCurrent.getSheet(), locCurrent.getRow(), i));
+                                        }
+                                    }
+                                }
+                            }
+                            if (cEmpty.size() < 2) {
+                                cEmpty.clear();
+                                colEmpty = false;
+                            }
+
+                            for (int i = 0; i < 4; i++) {  // ROW
+                                Location l = new Location(locCurrent.getSheet(), i, locCurrent.getCol());
+                                if (i != locCurrent.getRow()) {
+                                    if (board.getLocation(l) != getLetter()) {
+                                        if (!(board.isEmpty(l)) && !(new LocationScore(board, l, letter).getSelfTriples() > 0)) {
+                                            rowEmpty = false;
+                                            rEmpty.clear();
+                                        } else if (rowEmpty) {
+                                            rEmpty.add(new Location(locCurrent.getSheet(), i, locCurrent.getCol()));
+                                        }
+                                    }
+                                }
+                            }
+                            if (rEmpty.size() < 2) {
+                                rEmpty.clear();
+                                rowEmpty = false;
+                            }
+
+                            for (int i = 0; i < 4; i++) {  // SHEET
+                                Location l = new Location(i, locCurrent.getRow(), locCurrent.getCol());
+                                if (i != locCurrent.getSheet()) {
+                                    if (board.getLocation(l) != getLetter()) {
+                                        if (!(board.isEmpty(l)) && !(new LocationScore(board, l, letter).getSelfTriples() > 0)) {
+                                            sheetEmpty = false;
+                                            sEmpty.clear();
+                                        } else if (sheetEmpty) {
+                                            sEmpty.add(new Location(i, locCurrent.getRow(), locCurrent.getCol()));
+                                        }
+                                    }
+                                }
+                            }
+                            if (sEmpty.size() < 2) {
+                                sEmpty.clear();
+                                sheetEmpty = false;
+                            }
+
+                            if (colEmpty) {
+                                int i = random.nextInt(cEmpty.size());
+
+                                lastMove.add(0, cEmpty.get(i));
+                                return cEmpty.get(i);
+                            } else if (rowEmpty) {
+                                int i = random.nextInt(rEmpty.size());
+
+                                lastMove.add(0, rEmpty.get(i));
+                                return rEmpty.get(i);
+                            } else if (sheetEmpty) {
+                                int i = random.nextInt(sEmpty.size());
+
+                                lastMove.add(0, sEmpty.get(i));
+                                return sEmpty.get(i);
+                            }
+                        } else if (lastMove.size() > 0) {
+                            if (ls.getSelfDoubles() > 0 && isAdjacent(locCurrent, lastMove.get(0))) { //todo finish laying out scoring algorithm
                                 score += (5000 * ls.getSelfDoubles()); // Multiplies score based on how many doubles are in a location
                             }
-                        } else if (ls.getSelfTriples() > 1) {
-                            score += 100000;
                         }
                         //System.out.println(locCurrent + " " + score);
 
@@ -127,20 +235,13 @@ public class Espresso implements PlayerInt {
                 }
             }
         }
+
         //System.out.println("Before sort ..." + bestLocs);
         Collections.sort(bestLocs); // Sorts bestLoc in descending order (biggest score to smallest score)
         //System.out.println("After sort ... " + bestLocs + "\n");
 
-        //todo re-evaluate the remaining moves after the previous operation
-        //Logic for how to move ----------------------------------------------------
-        //instant wins, stop instant win
-        if (selfQuadruples.size() > 0) { //win immediately
-            return selfQuadruples.get(0);
-        } else if (otherQuadruples.size() > 0) { //block them from winning immediately
-            return otherQuadruples.get(0);
-        } else {
-            return bestLocs.get(0).getLocation(); //pick the best of the bestLocs
-        }
+        lastMove.add(0, bestLocs.get(0).getLocation());
+        return bestLocs.get(0).getLocation(); //pick the best of the bestLocs
     }
 
     /**
